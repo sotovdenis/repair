@@ -16,6 +16,7 @@ public class CarsInfo extends BaseEntity {
         this.VIN = VIN;
     }
 
+
     protected CarsInfo() {
     }
 
