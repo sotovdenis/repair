@@ -16,4 +16,14 @@ public class CustomerServiceImpl implements CustomerService {
     public void addCustomer(Customer customer) {
         customerRepo.save(customer);
     }
+
+    @Override
+    public void updateCustomerById(String id) {
+        customerRepo.update(customerRepo.findById(id));
+    }
+
+    @Override
+    public void findCustomerById(String id) {
+        customerRepo.findById(id);
+    }
 }

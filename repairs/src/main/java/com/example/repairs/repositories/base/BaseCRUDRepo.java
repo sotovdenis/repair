@@ -2,9 +2,14 @@ package com.example.repairs.repositories.base;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.rmi.server.UID;
+import java.util.List;
+import java.util.Optional;
 
 
 public class BaseCRUDRepo<E> implements CreateRepo<E>, DeleteRepo<E>, ReadRepo<E>, UpdateRepo<E> {
@@ -25,7 +30,7 @@ public class BaseCRUDRepo<E> implements CreateRepo<E>, DeleteRepo<E>, ReadRepo<E
     }
 
     @Override
-    public E findById(UID id) {
+    public E findById(String id) {
         return entityManager.find(entityClass, id);
     }
 
@@ -39,6 +44,15 @@ public class BaseCRUDRepo<E> implements CreateRepo<E>, DeleteRepo<E>, ReadRepo<E
     @Transactional
     public void update(E entity) {
         entityManager.merge(entity);
+    }
+
+    @Override
+    public List<E> findAll() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
+        Root<E> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     protected EntityManager getEntityManager() {

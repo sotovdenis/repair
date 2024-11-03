@@ -19,7 +19,7 @@ public class Category extends BaseEntity {
         this.brand = brand;
     }
 
-    protected Category() {
+    public Category() {
     }
 
     @OneToMany(mappedBy = "category")
