@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-
     private final CustomerRepo customerRepo;
     private final ValidationUtil validationUtil;
     private final ModelMapper modelMapper;

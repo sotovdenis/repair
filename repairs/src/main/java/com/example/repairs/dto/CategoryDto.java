@@ -9,7 +9,7 @@ public class CategoryDto {
     private String brand;
     private String carBrand;
 
-    protected CategoryDto() {
+    public CategoryDto() {
     }
 
     @NotNull
