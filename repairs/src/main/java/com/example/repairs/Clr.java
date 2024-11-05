@@ -1,7 +1,10 @@
 package com.example.repairs;
 
+import com.example.repairs.dto.CarDto;
 import com.example.repairs.entities.*;
 import com.example.repairs.repositories.*;
+import com.example.repairs.services.CarsInfoService;
+import com.example.repairs.vmodel.CarViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,21 +19,22 @@ import java.util.List;
 public class Clr implements CommandLineRunner {
 
     private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    private final CarInfoRepo carsInfoRepository;
+    private final CarsInfoService carsInfoService;
     private final CategoryRepo categoryRepository;
     private final CustomerRepo customerRepository;
     private final RepairPartsRepo repairPartsRepository;
     private final OrderRepo orderRepository;
     private final ReviewRepo reviewRepository;
 
+
     @Autowired
-    public Clr(CarInfoRepo carInfoRepo,
+    public Clr(CarsInfoService carsInfoService,
                CategoryRepo categoryRepo,
                CustomerRepo customerRepo,
                RepairPartsRepo repairPartsRepo,
                OrderRepo orderRepo,
                ReviewRepo reviewRepo) {
-        this.carsInfoRepository = carInfoRepo;
+        this.carsInfoService = carsInfoService;
         this.categoryRepository = categoryRepo;
         this.customerRepository = customerRepo;
         this.repairPartsRepository = repairPartsRepo;
@@ -105,11 +109,14 @@ public class Clr implements CommandLineRunner {
 
     private void addCar() throws IOException {
         System.out.println("Enter car details in format: brandName VIN");
-        String[] params = bufferedReader.readLine().split("\\s+");
+        String[] params = bufferedReader.readLine().split(" ");
 
-        CarsInfo car = new CarsInfo(params[0], params[1]);
-        carsInfoRepository.save(car);
+        CarDto carDto = new CarDto();
+        carDto.setBrandName(params[0]);
+        carDto.setVIN(params[1]);
+        carsInfoService.addCarInfo(params[0], params[1]);
         System.out.println("Successfully added car!");
+        System.out.println(carsInfoService.findCarInfoByName("audi").toString());
     }
 
     private void addCategory() throws IOException {
@@ -179,7 +186,7 @@ public class Clr implements CommandLineRunner {
     }
 
     private void showAllCars() {
-        List<CarsInfo> cars = carsInfoRepository.findAll();
+        List<CarsInfo> cars = carsInfoService.findAll();
         cars.forEach(car -> System.out.printf("%s - %s%n",
                 car.getBrandName(), car.getVIN()));
     }
@@ -205,7 +212,7 @@ public class Clr implements CommandLineRunner {
 
     private void showAllOrders() {
         List<Order> orders = orderRepository.findAll();
-        orders.forEach(order -> System.out.printf("Order: %s - %s - $%.2f%n",
+        orders.forEach(order -> System.out.printf("OrderService: %s - %s - $%.2f%n",
                 order.getCustomer().getName(),
                 order.getRepairParts().getName(),
                 order.getAmount()));
