@@ -1,9 +1,11 @@
 package com.example.repairs;
 
 import com.example.repairs.dto.CarDto;
+import com.example.repairs.dto.CustomerDto;
 import com.example.repairs.entities.*;
 import com.example.repairs.repositories.*;
 import com.example.repairs.services.CarsInfoService;
+import com.example.repairs.services.CustomerService;
 import com.example.repairs.vmodel.CarViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +23,7 @@ public class Clr implements CommandLineRunner {
     private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private final CarsInfoService carsInfoService;
     private final CategoryRepo categoryRepository;
-    private final CustomerRepo customerRepository;
+    private final CustomerService customerService;
     private final RepairPartsRepo repairPartsRepository;
     private final OrderRepo orderRepository;
     private final ReviewRepo reviewRepository;
@@ -30,13 +32,13 @@ public class Clr implements CommandLineRunner {
     @Autowired
     public Clr(CarsInfoService carsInfoService,
                CategoryRepo categoryRepo,
-               CustomerRepo customerRepo,
+               CustomerService customerService,
                RepairPartsRepo repairPartsRepo,
                OrderRepo orderRepo,
                ReviewRepo reviewRepo) {
         this.carsInfoService = carsInfoService;
         this.categoryRepository = categoryRepo;
-        this.customerRepository = customerRepo;
+        this.customerService = customerService;
         this.repairPartsRepository = repairPartsRepo;
         this.orderRepository = orderRepo;
         this.reviewRepository = reviewRepo;
@@ -77,10 +79,10 @@ public class Clr implements CommandLineRunner {
                     this.addRepairPart();
                     break;
                 case "5":
-                    this.addOrder();
+//                    this.addOrder();
                     break;
                 case "6":
-                    this.addReview();
+//                    this.addReview();
                     break;
                 case "7":
                     this.showAllCars();
@@ -89,7 +91,7 @@ public class Clr implements CommandLineRunner {
                     this.showAllCategories();
                     break;
                 case "9":
-                    this.showAllCustomers();
+//                    this.showAllCustomers();
                     break;
                 case "10":
                     this.showAllRepairParts();
@@ -133,9 +135,25 @@ public class Clr implements CommandLineRunner {
         System.out.println("Enter customer details in format: name email phone login password");
         String[] params = bufferedReader.readLine().split("\\s+");
 
-        Customer customer = new Customer(params[0], params[1], params[2], params[3], params[4]);
-        customerRepository.save(customer);
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setName(params[0]);
+        customerDto.setEmail(params[1]);
+        customerDto.setPhone(params[2]);
+        customerDto.setLogin(params[3]);
+        customerDto.setPassword(params[4]);
+
+        customerService.addCustomer(customerDto);
         System.out.println("Successfully added customer!");
+
+        CustomerDto updatedCustomerDto = new CustomerDto();
+        customerDto.setName(params[0]);
+        customerDto.setEmail(params[1]);
+        customerDto.setPhone(params[2]);
+        customerDto.setLogin("phounexxx");
+        customerDto.setPassword(params[4]);
+
+        customerService.updateCustomerByLogin("login", "phounexxx");
+
     }
 
     private void addRepairPart() throws IOException {
@@ -147,43 +165,43 @@ public class Clr implements CommandLineRunner {
         System.out.println("Successfully added repair part!");
     }
 
-    private void addOrder() throws IOException {
-        System.out.println("Enter order details in format: customerId repairPartId amount status date (yyyy-MM-dd HH:mm:ss)");
-        String[] params = bufferedReader.readLine().split("\\s+");
+//    private void addOrder() throws IOException {
+//        System.out.println("Enter order details in format: customerId repairPartId amount status date (yyyy-MM-dd HH:mm:ss)");
+//        String[] params = bufferedReader.readLine().split("\\s+");
+//
+//        Customer customer = customerRepository.findById(String.valueOf(params[0]));
+//        RepairParts repairPart = repairPartsRepository.findById(String.valueOf(params[1]));
+//        double amount = Double.parseDouble(params[2]);
+//        String status = params[3];
+//        Timestamp date = Timestamp.valueOf(params[4]);
+//
+//        if (customer != null && repairPart != null) {
+//            Order order = new Order(customer, repairPart, amount, status, date);
+//            orderRepository.save(order);
+//            System.out.println("Successfully added order!");
+//        } else {
+//            System.out.println("Error: Customer or Repair Part not found!");
+//        }
+//    }
 
-        Customer customer = customerRepository.findById(String.valueOf(params[0]));
-        RepairParts repairPart = repairPartsRepository.findById(String.valueOf(params[1]));
-        double amount = Double.parseDouble(params[2]);
-        String status = params[3];
-        Timestamp date = Timestamp.valueOf(params[4]);
-
-        if (customer != null && repairPart != null) {
-            Order order = new Order(customer, repairPart, amount, status, date);
-            orderRepository.save(order);
-            System.out.println("Successfully added order!");
-        } else {
-            System.out.println("Error: Customer or Repair Part not found!");
-        }
-    }
-
-    private void addReview() throws IOException {
-        System.out.println("Enter review details in format: customerId repairPartId rating content date (yyyy-MM-dd HH:mm:ss)");
-        String[] params = bufferedReader.readLine().split("\\s+");
-
-        Customer customer = customerRepository.findById(String.valueOf(params[0]));
-        RepairParts repairPart = repairPartsRepository.findById(String.valueOf(params[1]));
-        int rating = Integer.parseInt(params[2]);
-        String content = params[3];
-        Timestamp date = Timestamp.valueOf(params[4]);
-
-        if (customer != null && repairPart != null) {
-            Review review = new Review(customer, repairPart, rating, content, date);
-            reviewRepository.save(review);
-            System.out.println("Successfully added review!");
-        } else {
-            System.out.println("Error: Customer or Repair Part not found!");
-        }
-    }
+//    private void addReview() throws IOException {
+//        System.out.println("Enter review details in format: customerId repairPartId rating content date (yyyy-MM-dd HH:mm:ss)");
+//        String[] params = bufferedReader.readLine().split("\\s+");
+//
+//        Customer customer = customerRepository.findById(String.valueOf(params[0]));
+//        RepairParts repairPart = repairPartsRepository.findById(String.valueOf(params[1]));
+//        int rating = Integer.parseInt(params[2]);
+//        String content = params[3];
+//        Timestamp date = Timestamp.valueOf(params[4]);
+//
+//        if (customer != null && repairPart != null) {
+//            Review review = new Review(customer, repairPart, rating, content, date);
+//            reviewRepository.save(review);
+//            System.out.println("Successfully added review!");
+//        } else {
+//            System.out.println("Error: Customer or Repair Part not found!");
+//        }
+//    }
 
     private void showAllCars() {
         List<CarsInfo> cars = carsInfoService.findAll();
@@ -196,11 +214,11 @@ public class Clr implements CommandLineRunner {
         categories.forEach(category -> System.out.printf("%s%n", category.getName()));
     }
 
-    private void showAllCustomers() {
-        List<Customer> customers = customerRepository.findAll();
-        customers.forEach(customer -> System.out.printf("%s (%s)%n",
-                customer.getName(), customer.getEmail()));
-    }
+//    private void showAllCustomers() {
+//        List<Customer> customers = customerRepository.findAll();
+//        customers.forEach(customer -> System.out.printf("%s (%s)%n",
+//                customer.getName(), customer.getEmail()));
+//    }
 
     private void showAllRepairParts() {
         List<RepairParts> parts = repairPartsRepository.findAll();

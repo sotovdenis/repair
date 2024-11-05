@@ -11,7 +11,7 @@ public class CustomerDto {
     private String login;
     private String password;
 
-    protected CustomerDto(){
+    public CustomerDto(){
     }
 
     @NotNull
