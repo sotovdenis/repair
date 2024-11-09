@@ -14,6 +14,4 @@ public class CategoryRepositoryImpl extends BaseCRUDRepo<Category> implements Ca
     public CategoryRepositoryImpl() {
         super(Category.class);
     }
-
-
 }

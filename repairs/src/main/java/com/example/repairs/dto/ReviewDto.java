@@ -8,6 +8,9 @@ import org.hibernate.validator.constraints.Length;
 public class ReviewDto {
     private int rating;
     private String content;
+    private String customer;
+    private String repairPart;
+
 
     protected ReviewDto() {
     }
@@ -18,7 +21,7 @@ public class ReviewDto {
         return rating;
     }
 
-    public void setRating(@Max(5)int rating) {
+    public void setRating(@Max(5) int rating) {
         this.rating = rating;
     }
 
@@ -31,5 +34,27 @@ public class ReviewDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
+    public String getRepairPart() {
+        return repairPart;
+    }
+
+    public void setRepairPart(String repairPart) {
+        this.repairPart = repairPart;
     }
 }

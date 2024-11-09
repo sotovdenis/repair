@@ -11,6 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CategoryRepo extends CreateRepo<Category>, ReadRepo<Category>, UpdateRepo<Category> {
+public interface CategoryRepo extends CreateRepo<Category>, ReadRepo<Category> {
 
 }

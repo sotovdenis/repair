@@ -8,6 +8,7 @@ public class CategoryDto {
     private String name;
     private String brand;
     private String carBrand;
+    private String usefulCar;
 
     public CategoryDto() {
     }
@@ -44,5 +45,15 @@ public class CategoryDto {
 
     public void setCarBrand(String carBrand) {
         this.carBrand = carBrand;
+    }
+
+    @NotNull
+    @NotEmpty
+    public String getUsefulCar() {
+        return usefulCar;
+    }
+
+    public void setUsefulCar(String usefulCar) {
+        this.usefulCar = usefulCar;
     }
 }
