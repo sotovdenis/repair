@@ -152,7 +152,7 @@ public class Clr implements CommandLineRunner {
         customerDto.setLogin("phounexxx");
         customerDto.setPassword(params[4]);
 
-        customerService.updateCustomerByLogin("login", "phounexxx");
+//        customerService.updateCustomerByLogin("login", "phounexxx");
 
     }
 

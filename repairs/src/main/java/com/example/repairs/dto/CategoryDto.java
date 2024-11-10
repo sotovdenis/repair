@@ -7,8 +7,7 @@ import org.hibernate.validator.constraints.Length;
 public class CategoryDto {
     private String name;
     private String brand;
-    private String carBrand;
-    private String usefulCar;
+    private String car;
 
     public CategoryDto() {
     }
@@ -36,24 +35,22 @@ public class CategoryDto {
         this.brand = brand;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
-    public String getCarBrand() {
-        return carBrand;
+//    @NotNull
+//    @NotEmpty
+//    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
+//    public String getCarBrand() {
+//        return carBrand;
+//    }
+//
+//    public void setCarBrand(String carBrand) {
+//        this.carBrand = carBrand;
+//    }
+
+    public String getCar() {
+        return String.valueOf(car);
     }
 
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    @NotNull
-    @NotEmpty
-    public String getUsefulCar() {
-        return usefulCar;
-    }
-
-    public void setUsefulCar(String usefulCar) {
-        this.usefulCar = usefulCar;
+    public void setCar(String car) {
+        this.car = car;
     }
 }

@@ -46,11 +46,7 @@ public class CarsInfoServiceImpl implements CarsInfoService {
 
     @Override
     public List<CarsInfo> findCarInfoByName(String name) {
-        return carInfoRepo.findByName(name)
-                .stream()
-                .map(e -> this.modelMapper
-                        .map(carInfoRepo.findByName(name), CarsInfo.class))
-                .toList();
+        return carInfoRepo.findByName(name);
     }
 
     @Override

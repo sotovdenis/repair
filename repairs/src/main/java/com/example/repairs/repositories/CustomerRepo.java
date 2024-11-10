@@ -8,9 +8,9 @@ import com.example.repairs.repositories.base.UpdateRepo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepo extends CreateRepo<Customer>, ReadRepo<Customer>, UpdateRepo<Customer> {
     void doSomething();
-    Customer findByLogin(String login);
 }

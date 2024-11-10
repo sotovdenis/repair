@@ -9,7 +9,6 @@ import java.util.Set;
 public class CarsInfo extends BaseEntity {
     private String brandName;
     private String VIN;
-    private Set<Category> categories;
 
     public CarsInfo(String brandName, String VIN) {
         this.brandName = brandName;
@@ -38,12 +37,4 @@ public class CarsInfo extends BaseEntity {
         this.VIN = VIN;
     }
 
-    @OneToMany(mappedBy = "usefulCar")
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

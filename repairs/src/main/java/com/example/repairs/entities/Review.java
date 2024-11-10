@@ -24,7 +24,7 @@ public class Review extends BaseEntity {
     protected Review() {
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     public Customer getCustomer() {
         return customer;
     }
@@ -33,7 +33,7 @@ public class Review extends BaseEntity {
         this.customer = customer;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     public RepairParts getRepairParts() {
         return repairParts;
     }

@@ -6,6 +6,9 @@ import com.example.repairs.repositories.CustomerRepo;
 import com.example.repairs.repositories.base.BaseCRUDRepo;
 
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,12 +25,5 @@ public class CustomerRepositoryImpl extends BaseCRUDRepo<Customer> implements Cu
         System.out.println("Hello");
     }
 
-    @Override
-    public Customer findByLogin(String login) {
-        String jpql = "SELECT c FROM Customer c WHERE c.login = :login";
-        TypedQuery<Customer> query = super.getEntityManager().createQuery(jpql, Customer.class);
-        query.setParameter("login", login);
-        return query.getSingleResult();
-    }
 
 }

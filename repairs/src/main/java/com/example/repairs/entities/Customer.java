@@ -11,8 +11,6 @@ public class Customer extends BaseEntity {
     private String phone;
     private String login;
     private String password;
-    private Order order;
-    private Review review;
 
     public Customer(String name, String email, String phone, String login, String password) {
         this.name = name;
@@ -70,21 +68,4 @@ public class Customer extends BaseEntity {
         this.password = password;
     }
 
-    @OneToOne(mappedBy = "customer")
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    @OneToOne(mappedBy = "customer")
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
 }

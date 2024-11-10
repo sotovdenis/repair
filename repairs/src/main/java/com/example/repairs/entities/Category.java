@@ -7,14 +7,12 @@ import java.util.Set;
 @Entity
 @Table(name = "category")
 public class Category extends BaseEntity {
-    private Set<RepairParts> repairParts;
-    private CarsInfo usefulCar;
+    private CarsInfo car;
     private String name;
     private String brand;
 
-    public Category(Set<RepairParts> repairParts, CarsInfo usefulCar, String name, String brand) {
-        this.repairParts = repairParts;
-        this.usefulCar = usefulCar;
+    public Category(CarsInfo car, String name, String brand) {
+        this.car = car;
         this.name = name;
         this.brand = brand;
     }
@@ -22,22 +20,14 @@ public class Category extends BaseEntity {
     public Category() {
     }
 
-    @OneToMany(mappedBy = "category")
-    public Set<RepairParts> getRepairParts() {
-        return repairParts;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "car_id", referencedColumnName = "id", nullable = false)
+    public CarsInfo getCar() {
+        return car;
     }
 
-    public void setRepairParts(Set<RepairParts> repairParts) {
-        this.repairParts = repairParts;
-    }
-
-    @ManyToOne
-    public CarsInfo getUsefulCar() {
-        return usefulCar;
-    }
-
-    public void setUsefulCar(CarsInfo usefulCar) {
-        this.usefulCar = usefulCar;
+    public void setCar(CarsInfo usefulCar) {
+        this.car = usefulCar;
     }
 
     @Column(name = "name", nullable = false)

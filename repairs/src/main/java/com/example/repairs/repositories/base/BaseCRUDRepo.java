@@ -48,11 +48,8 @@ public class BaseCRUDRepo<E> implements CreateRepo<E>, DeleteRepo<E>, ReadRepo<E
 
     @Override
     public List<E> findAll() {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(entityClass);
-        Root<E> root = criteriaQuery.from(entityClass);
-        criteriaQuery.select(root);
-        return entityManager.createQuery(criteriaQuery).getResultList();
+        String jpql = "SELECT e FROM " + entityClass.getSimpleName() + " e";
+        return entityManager.createQuery(jpql, entityClass).getResultList();
     }
 
     protected EntityManager getEntityManager() {

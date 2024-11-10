@@ -10,8 +10,7 @@ public class RepairParts extends BaseEntity {
     private String description;
     private double price;
     private Category category;
-    private Order order;
-    private Review review;
+
 
     public RepairParts(String name, String description, double price) {
         this.name = name;
@@ -49,7 +48,8 @@ public class RepairParts extends BaseEntity {
         this.price = price;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     public Category getCategory() {
         return category;
     }
@@ -58,21 +58,4 @@ public class RepairParts extends BaseEntity {
         this.category = category;
     }
 
-    @OneToOne(mappedBy = "repairParts")
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    @OneToOne(mappedBy = "repairParts")
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
 }
