@@ -1,9 +1,7 @@
-package com.example.repairs.controllers;
+package com.example.repairs.contr;
 
-import com.example.repairs.dto.CarDto;
 import com.example.repairs.dto.CustomerDto;
 import com.example.repairs.dto.RenameCustomerDto;
-import com.example.repairs.entities.CarsInfo;
 import com.example.repairs.entities.Customer;
 import com.example.repairs.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +25,14 @@ public class CustomerController {
         customerService.addCustomer(customerDto);
     }
 
-    @PatchMapping("/rename")
-    void updateLogin(RenameCustomerDto renameCustomerDto) {
-        customerService.updateCustomerById(renameCustomerDto);
-    }
+//    @PatchMapping("/rename")
+//    void updateLogin(RenameCustomerDto renameCustomerDto) {
+//        customerService.updateCustomerById(renameCustomerDto);
+//    }
 
     @GetMapping("/all")
     List<Customer> findAllCustomers() {
         return customerService.findAll();
     }
-
-//    @RequestMapping("/find/{login}")
-//    Customer findByName(@PathVariable String login) {
-//        return customerService.findCustomerByLogin(login);
-//    }
 
 }

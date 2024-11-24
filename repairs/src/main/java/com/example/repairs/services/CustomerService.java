@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface CustomerService {
     void addCustomer(CustomerDto customer);
-    void updateCustomerById(RenameCustomerDto renameCustomerDto);
+    void updateCustomerLoginById(RenameCustomerDto renameCustomerDto);
     List<Customer> findAll();
+    void updateCustomerById(String id, CustomerDto customerDto);
+    CustomerDto getCustomerById(String id);
 }

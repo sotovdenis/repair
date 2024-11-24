@@ -1,4 +1,4 @@
-package com.example.repairs.controllers;
+package com.example.repairs.contr;
 
 import com.example.repairs.dto.RepairPartsDto;
 import com.example.repairs.entities.RepairParts;

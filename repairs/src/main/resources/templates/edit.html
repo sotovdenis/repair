@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать профиль</title>
+</head>
+<body>
+<h2>Редактировать профиль</h2>
+
+<form th:action="@{/profile/{id}/edit(id=${form.id})}" th:object="${form}" method="post">
+    <div>
+        <label for="login">Логин:</label>
+        <input type="text" id="login" th:field="*{login}" placeholder="Введите ваш логин" required/>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Введите ваш email" required/>
+    </div>
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="Введите новый пароль" required/>
+    </div>
+    <div>
+        <button type="submit">Сохранить изменения</button>
+    </div>
+</form>
+</body>
+</html>

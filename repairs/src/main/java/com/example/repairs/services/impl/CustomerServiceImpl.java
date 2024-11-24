@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomerById(RenameCustomerDto renameCustomerDto) {
+    public void updateCustomerLoginById(RenameCustomerDto renameCustomerDto) {
         Customer customer = customerRepo.findById(renameCustomerDto.getId());
         customer.setLogin(renameCustomerDto.getNewLogin());
 //        TODO: решить проблему id to load is required for loading
@@ -75,6 +75,31 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<Customer> findAll() {
         return customerRepo.findAll();
+    }
+
+    @Override
+    public void updateCustomerById(String id, CustomerDto customerDto) {
+        Customer customer = customerRepo.findById(id);
+        customer.setLogin(customerDto.getLogin());
+        customer.setName(customerDto.getName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setPhone(customerDto.getPhone());
+        customer.setPassword(customerDto.getPassword());
+        customerRepo.update(customer);
+
+    }
+
+    @Override
+    public CustomerDto getCustomerById(String id) {
+        Customer customer = customerRepo.findById(id);
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setPassword(customer.getPassword());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setPhone(customer.getPhone());
+        customerDto.setLogin(customer.getLogin());
+        customerDto.setName(customer.getName());
+
+        return customerDto;
     }
 
 }

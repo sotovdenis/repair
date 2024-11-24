@@ -1,8 +1,6 @@
-package com.example.repairs.controllers;
+package com.example.repairs.contr;
 
-import com.example.repairs.dto.CarDto;
 import com.example.repairs.dto.CategoryDto;
-import com.example.repairs.entities.CarsInfo;
 import com.example.repairs.entities.Category;
 import com.example.repairs.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
