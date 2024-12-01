@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/header"></div>
+
+<div class="profile-container">
+    <div th:if="${message}">
+        <p th:text="${message}" class="error-message"></p>
+    </div>
+
+    <div th:if="${profile}">
+        <h1>Профиль пользователя</h1>
+
+        <div class="profile-picture">
+            <img th:src="@{${profile.picture}}" alt="Фото пользователя">
+        </div>
+
+        <div class="profile-info">
+            <p><strong>Логин:</strong> <span th:text="${profile.login}"></span></p>
+            <p><strong>Телефон:</strong> <span th:text="${profile.phone}"></span></p>
+        </div>
+
+        <div class="edit-profile">
+            <a th:href="@{'/profile/' + ${profile.id} + '/edit'}" class="edit-btn">Редактировать профиль</a>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

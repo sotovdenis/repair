@@ -3,7 +3,9 @@ package com.example.repairs.controllers;
 import com.example.contract.controllers.ProfileController;
 import com.example.contract.viewmodel.parts.BaseViewModel;
 import com.example.contract.viewmodel.parts.ProfileEditForm;
+import com.example.contract.viewmodel.parts.ProfileViewModel;
 import com.example.repairs.dto.CustomerDto;
+import com.example.repairs.entities.Customer;
 import com.example.repairs.services.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,72 +18,91 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/profile")
 public class ProfileControllerImpl implements ProfileController {
 
-    private final CustomerService customerService;
+	private final CustomerService customerService;
 
-    @Autowired
-    public ProfileControllerImpl(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+	@Autowired
+	public ProfileControllerImpl(CustomerService customerService) {
+		this.customerService = customerService;
+	}
 
-    @Override
-    @GetMapping("/{id}/edit")
-    public String editProfile(@PathVariable String id, Model model) {
-        CustomerDto customer = customerService.getCustomerById(id);
+	@Override
+	public String getProfile(String id, Model model) {
+		CustomerDto customerDto = customerService.getCustomerById(id);
 
-        if (customer == null) {
-            model.addAttribute("message", "Пользователь не найден");
-            return "error";
-        }
+		if (customerDto == null) {
+			model.addAttribute("message", "Пользователь не найден");
+			return "error";
+		}
 
-        ProfileEditForm profileEditForm = new ProfileEditForm(
-                id,
-                customer.getLogin(),
-                customer.getPassword(),
-                customer.getEmail()
-        );
+		ProfileViewModel profileViewModel = new ProfileViewModel(
+				id,
+				"picture",
+				customerDto.getLogin(),
+				customerDto.getLogin(),
+				customerDto.getPhone()
 
-        model.addAttribute("form", profileEditForm);
-        return "customers/edit";
-    }
+		);
 
-    @GetMapping("/pidor")
-    public String pidor(Model model) {
-        return "cars/table";
-    }
+		model.addAttribute("profile", profileViewModel);
+		return "customers/profile";
 
-    @Override
-    @PostMapping("/{id}/edit")
-    public String edit(@PathVariable String id,
-                       @Valid @ModelAttribute("form") ProfileEditForm form,
-                       BindingResult bindingResult,
-                       Model model) {
+	}
 
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", bindingResult.getAllErrors());
-            return "editProfile";
-        }
+	@Override
+	@GetMapping("/{id}/edit")
+	public String editProfile(@PathVariable String id, Model model) {
+		CustomerDto customer = customerService.getCustomerById(id);
 
-        CustomerDto customer = customerService.getCustomerById(id);
-        if (customer == null) {
-            model.addAttribute("message", "Пользователь не найден");
-            return "error";
-        }
+		if (customer == null) {
+			model.addAttribute("message", "Пользователь не найден");
+			return "error";
+		}
 
-        customer.setLogin(form.login());
-        customer.setPassword(form.password());
-        customer.setEmail(form.email());
+		ProfileEditForm profileEditForm = new ProfileEditForm(
+				id,
+				customer.getLogin(),
+				customer.getPassword(),
+				customer.getEmail()
+		);
 
-        customerService.updateCustomerById(id, customer);
+		model.addAttribute("form", profileEditForm);
+		return "customers/edit";
+	}
 
-        model.addAttribute("message", "Профиль обновлен");
 
-        return "redirect:/profile/{id}/edit";
-    }
+	@Override
+	@PostMapping("/{id}/edit")
+	public String edit(@PathVariable String id,
+	                   @Valid @ModelAttribute("form") ProfileEditForm form,
+	                   BindingResult bindingResult,
+	                   Model model) {
 
-    @Override
-    public BaseViewModel createBaseViewModel(String title) {
-        return new BaseViewModel(
-                title
-        );
-    }
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("errors", bindingResult.getAllErrors());
+			return "editProfile";
+		}
+
+		CustomerDto customer = customerService.getCustomerById(id);
+		if (customer == null) {
+			model.addAttribute("message", "Пользователь не найден");
+			return "error";
+		}
+
+		customer.setLogin(form.login());
+		customer.setPassword(form.password());
+		customer.setEmail(form.email());
+
+		customerService.updateCustomerById(id, customer);
+
+		model.addAttribute("message", "Профиль обновлен");
+
+		return "redirect:/profile/{id}/edit";
+	}
+
+	@Override
+	public BaseViewModel createBaseViewModel(String title) {
+		return new BaseViewModel(
+				title
+		);
+	}
 }

@@ -5,6 +5,7 @@
     <title>Categories</title>
 </head>
 <body>
+<div th:replace="fragments/header"></div>
 <h1>Categories List</h1>
 
 <table>
@@ -15,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <div th:replace="fragments/header"></div>
+
     <tr th:each="category : ${categories}">
         <td th:text="${category.name}"></td>
         <td th:text="${category.brand}"></td>
