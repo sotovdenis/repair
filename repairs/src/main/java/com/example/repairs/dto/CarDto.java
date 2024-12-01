@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 
 public class CarDto {
     private String brandName;
-    private String VIN;
+    private String vin;
 
     public CarDto() {
     }
@@ -24,11 +24,11 @@ public class CarDto {
     @NotNull
     @NotEmpty
     @Length(max = 17, message = "Проверьте введенный VIN!")
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 }

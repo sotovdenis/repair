@@ -11,7 +11,7 @@ public class RepairPartsDto {
     private double price;
     private String category;
 
-    protected RepairPartsDto() {
+    public RepairPartsDto() {
     }
 
     @NotNull
@@ -35,8 +35,6 @@ public class RepairPartsDto {
         this.description = description;
     }
     @NotNull
-    @NotEmpty
-    @Positive
     public double getPrice() {
         return price;
     }

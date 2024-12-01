@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+<h1>Main Page</h1>
+
+<h2>Categories</h2>
+<div th:if="${categories}">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.id}"></td>
+            <td th:text="${category.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${categories.isEmpty()}">
+    <p>No categories available</p>
+</div>
+
+<h2>Repair Parts</h2>
+<div th:if="${repairParts}">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="part : ${repairParts}">
+            <td th:text="${part.id}"></td>
+            <td th:text="${part.name}"></td>
+            <td th:text="${part.price}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:if="${repairParts.isEmpty()}">
+    <p>No repair parts available</p>
+</div>
+
+<div>
+    <a th:href="@{/main/repairs}">See all repairs</a>
+    <a th:href="@{/main/categories}">See all categories</a>
+</div>
+</body>
+</html>

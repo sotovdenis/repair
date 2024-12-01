@@ -2,17 +2,15 @@ package com.example.repairs.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 @Table(name = "cars")
 public class CarsInfo extends BaseEntity {
     private String brandName;
-    private String VIN;
+    private String vin;
 
-    public CarsInfo(String brandName, String VIN) {
+    public CarsInfo(String brandName, String vin) {
         this.brandName = brandName;
-        this.VIN = VIN;
+        this.vin = vin;
     }
 
 
@@ -29,12 +27,12 @@ public class CarsInfo extends BaseEntity {
     }
 
     @Column(name = "vin", nullable = false)
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVin(String VIN) {
+        this.vin = VIN;
     }
 
 }

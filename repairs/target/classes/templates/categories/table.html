@@ -1,0 +1,28 @@
+<!-- templates/categories/table.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Categories</title>
+</head>
+<body>
+<h1>Categories List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Category Name</th>
+        <th>Brand</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:replace="fragments/header"></div>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}"></td>
+        <td th:text="${category.brand}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/admin/categories/create">Add New Category</a>
+</body>
+</html>

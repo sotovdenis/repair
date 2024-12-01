@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cars</title>
+</head>
+<body>
+<div th:replace="fragments/header"></div>
+<h1>Cars List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Brand Name</th>
+        <th>VIN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.brandName}"></td>
+        <td th:text="${car.vin}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="/admin/cars/create">Add New Car</a>
+</body>
+</html>

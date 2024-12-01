@@ -1,12 +1,11 @@
-package com.example.repairs.controllers;
+package com.example.repairs.rest;
 
 import com.example.contract.controllers.ProductController;
 import com.example.contract.viewmodel.parts.BaseViewModel;
 import com.example.contract.viewmodel.parts.ReviewViewModel;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//@RestController
 public class ProductPageControllerImpl implements ProductController {
     @Override
     public BaseViewModel createBaseViewModel(String title) {

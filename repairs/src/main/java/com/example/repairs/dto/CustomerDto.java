@@ -38,7 +38,7 @@ public class CustomerDto {
 
     @NotNull
     @NotEmpty
-    @Length(min = 10, max = 11, message = "Проверьте номер телефона")
+    @Length(min = 8, message = "Проверьте номер телефона")
     public String getPhone() {
         return phone;
     }

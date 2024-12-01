@@ -12,7 +12,7 @@ public class ReviewDto {
     private String repairPart;
 
 
-    protected ReviewDto() {
+    public ReviewDto() {
     }
 
     @NotNull

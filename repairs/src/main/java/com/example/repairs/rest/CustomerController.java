@@ -1,7 +1,6 @@
-package com.example.repairs.contr;
+package com.example.repairs.rest;
 
 import com.example.repairs.dto.CustomerDto;
-import com.example.repairs.dto.RenameCustomerDto;
 import com.example.repairs.entities.Customer;
 import com.example.repairs.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;

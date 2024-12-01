@@ -1,4 +1,4 @@
-package com.example.repairs.contr;
+package com.example.repairs.rest;
 
 import com.example.repairs.dto.CategoryDto;
 import com.example.repairs.entities.Category;

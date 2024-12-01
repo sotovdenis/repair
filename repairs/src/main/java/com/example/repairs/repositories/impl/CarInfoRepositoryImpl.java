@@ -25,7 +25,7 @@ public class CarInfoRepositoryImpl extends BaseCRUDRepo<CarsInfo> implements Car
 
     @Override
     public List<CarsInfo> findByVin(String vin) {
-        String jpql = "SELECT c FROM CarsInfo c WHERE c.VIN = :vin";
+        String jpql = "SELECT c FROM CarsInfo c WHERE c.vin = :vin";
         TypedQuery<CarsInfo> query = super.getEntityManager().createQuery(jpql, CarsInfo.class);
         query.setParameter("vin", vin);
         return query.getResultList();

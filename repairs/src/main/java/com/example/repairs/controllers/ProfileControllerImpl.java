@@ -41,7 +41,12 @@ public class ProfileControllerImpl implements ProfileController {
         );
 
         model.addAttribute("form", profileEditForm);
-        return "edit";
+        return "customers/edit";
+    }
+
+    @GetMapping("/pidor")
+    public String pidor(Model model) {
+        return "cars/table";
     }
 
     @Override
@@ -68,7 +73,7 @@ public class ProfileControllerImpl implements ProfileController {
 
         customerService.updateCustomerById(id, customer);
 
-        model.addAttribute("message", "Профиль успешно обновлен!");
+        model.addAttribute("message", "Профиль обновлен");
 
         return "redirect:/profile/{id}/edit";
     }

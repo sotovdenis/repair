@@ -1,7 +1,7 @@
 package com.example.repairs.entities;
 
 import jakarta.persistence.*;
-import org.attoparser.dom.Text;
+//import org.attoparser.dom.Text;
 
 @Entity
 @Table(name = "repairs")
@@ -12,13 +12,14 @@ public class RepairParts extends BaseEntity {
     private Category category;
 
 
-    public RepairParts(String name, String description, double price) {
+    public RepairParts(String name, String description, double price, Category category) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.category = category;
     }
 
-    protected RepairParts() {
+    public RepairParts() {
     }
 
     @Column(name = "name", nullable = false)

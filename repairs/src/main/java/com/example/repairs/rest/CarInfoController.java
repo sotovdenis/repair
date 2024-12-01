@@ -1,4 +1,4 @@
-package com.example.repairs.contr;
+package com.example.repairs.rest;
 
 import com.example.repairs.dto.CarDto;
 import com.example.repairs.entities.CarsInfo;
@@ -22,7 +22,7 @@ public class CarInfoController {
     void addCarInfo(@RequestBody CarDto carDto) {
         carsInfoService.addCarInfo(
                 carDto.getBrandName(),
-                carDto.getVIN());
+                carDto.getVin());
     }
 
     @GetMapping("/all")
