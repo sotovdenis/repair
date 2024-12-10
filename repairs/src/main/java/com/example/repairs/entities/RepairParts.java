@@ -1,7 +1,6 @@
 package com.example.repairs.entities;
 
 import jakarta.persistence.*;
-//import org.attoparser.dom.Text;
 
 @Entity
 @Table(name = "repairs")

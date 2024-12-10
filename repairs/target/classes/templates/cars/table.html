@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cars</title>
+    <title>Автомобили</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
-<h1>Cars List</h1>
+<h1>Список всех Авто</h1>
 
 <table>
     <thead>
     <tr>
-        <th>Brand Name</th>
-        <th>VIN</th>
+        <th>Марка Авто</th>
+        <th>VIN номер</th>
     </tr>
     </thead>
     <tbody>
@@ -22,6 +26,6 @@
     </tbody>
 </table>
 
-<a href="/admin/cars/create">Add New Car</a>
+<a href="/admin/cars/create">Добавить новый?</a>
 </body>
 </html>

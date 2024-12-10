@@ -55,4 +55,9 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	public List<RepairParts> findAll() {
 		return repairPartsRepo.findAll();
 	}
+
+	@Override
+	public RepairParts findById(String id) {
+		return repairPartsRepo.findById(id);
+	}
 }

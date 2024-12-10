@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Choose a model to operate</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
 <h1>Models</h1>
 <p>Choose</p>
-<div><a href="/main">Main</a></div>
-<div><a href="/admin/cars">Cars</a></div>
-<div><a href="/admin/categories">Categories</a></div>
-<div><a href="/admin/repair">Parts</a></div>
+<div><a href="/main">Главная</a></div>
+<div><a href="/admin/cars">Авто</a></div>
+<div><a href="/admin/categories">Категории</a></div>
+<div><a href="/admin/repair">Зап Части</a></div>
 <footer th:replace="fragments/footer"></footer>
 </body>
 </html>

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Main Page</title>
+    <title>Главная</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
-<h1>Main Page</h1>
+<h1>Главная Страница</h1>
 
-<h2>Categories</h2>
+<h2>Разделы Категорий</h2>
 <div th:if="${categories}">
     <table>
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Имя</th>
         </tr>
         </thead>
         <tbody>
@@ -23,16 +27,16 @@
     </table>
 </div>
 <div th:if="${categories.isEmpty()}">
-    <p>No categories available</p>
+    <p>мимо вопрос</p>
 </div>
 
-<h2>Repair Parts</h2>
+<h2>Топ зап частей</h2>
 <div th:if="${repairParts}">
     <table>
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Price</th>
+            <th>Наименование</th>
+            <th>Стоимость</th>
         </tr>
         </thead>
         <tbody>
@@ -44,12 +48,12 @@
     </table>
 </div>
 <div th:if="${repairParts.isEmpty()}">
-    <p>No repair parts available</p>
-</div>
+    <p>мимо</p>
+</div>r1
 
 <div>
-    <a th:href="@{/main/repairs}">See all repairs</a>
-    <a th:href="@{/main/categories}">See all categories</a>
+    <a th:href="@{/admin/repair}">See all repairs(admin)</a>
+    <a th:href="@{/admin/categories}">See all categories(admin)</a>
 </div>
 <footer th:replace="fragments/footer"></footer>
 

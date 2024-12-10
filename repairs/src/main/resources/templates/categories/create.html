@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Create Category</title>
+    <title>Категории</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
-<h1>Create a Category</h1>
+<h1>Создать новый раздел категорий</h1>
 <form action="#" th:action="@{/admin/categories/create}" th:object="${categoryDto}" method="post">
     <div>
-        <label for="name">Name:</label>
+        <label for="name">Наименование:</label>
         <input type="text" id="name" th:field="*{name}" />
     </div>
     <div>
-        <label for="brandName">Brand Name:</label>
+        <label for="brandName">Марка:</label>
         <input type="text" id="brandName" th:field="*{brand}" />
     </div>
     <div>
-        <label for="car">Car:</label>
+        <label for="car">Для авто:</label>
         <select id="car" th:field="*{car}">
             <option value="" th:text="'Select a Car'"></option>
             <option th:each="car : ${cars}" th:value="${car.id}" th:text="${car.brandName}"></option>
         </select>
     </div>
     <div>
-        <button type="submit">Create Category</button>
+        <button type="submit">Создать категорию</button>
     </div>
 </form>
 </body>

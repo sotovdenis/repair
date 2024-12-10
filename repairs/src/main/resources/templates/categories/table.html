@@ -1,18 +1,21 @@
-<!-- templates/categories/table.html -->
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Categories</title>
+    <title>Категории</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
-<h1>Categories List</h1>
+<h1>Разделы категорий</h1>
 
 <table>
     <thead>
     <tr>
-        <th>Category Name</th>
-        <th>Brand</th>
+        <th>Имя раздела</th>
+        <th>Марка</th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +27,6 @@
     </tbody>
 </table>
 
-<a href="/admin/categories/create">Add New Category</a>
+<a href="/admin/categories/create">Добавить новый раздел?</a>
 </body>
 </html>

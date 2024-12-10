@@ -8,4 +8,5 @@ import java.util.List;
 public interface RepairPartsService {
     void addRepairPart(RepairPartsDto repairPartsDto);
     List<RepairParts> findAll();
+    RepairParts findById(String id);
 }

@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create Car</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/header"></div>
-<h1>Create a Car</h1>
+<h1>Создать Новое Авто</h1>
 <form action="#" th:action="@{/admin/cars/create}" th:object="${carDto}" method="post">
     <div>
-        <label for="vin">VIN:</label>
-        <input type="text" id="vin" th:field="*{vin}" />
+        <label for="vin">VIN номер автомобиля:</label>
+        <input type="text" id="vin" th:field="*{vin}"/>
     </div>
     <div>
-        <label for="brandName">Brand Name:</label>
-        <input type="text" id="brandName" th:field="*{brandName}" />
+        <label for="brandName">Марка автомобиля:</label>
+        <input type="text" id="brandName" th:field="*{brandName}"/>
     </div>
     <div>
-        <button type="submit">Create Car</button>
+        <button type="submit">Создать!</button>
     </div>
 </form>
 </body>
