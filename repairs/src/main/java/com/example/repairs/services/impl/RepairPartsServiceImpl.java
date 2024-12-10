@@ -10,11 +10,15 @@ import com.example.repairs.services.RepairPartsService;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+//@EnableCaching
 public class RepairPartsServiceImpl implements RepairPartsService {
 	private final RepairPartsRepo repairPartsRepo;
 	private final CategoryRepo categoryRepo;
@@ -30,6 +34,7 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	}
 
 	@Override
+//	@CacheEvict(cacheNames = "repairs", allEntries = true)
 	public void addRepairPart(RepairPartsDto repairPartsDto) {
 		if (!this.validationUtil.isValid(repairPartsDto)) {
 			this.validationUtil.violations(repairPartsDto)
@@ -52,6 +57,7 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	}
 
 	@Override
+//	@Cacheable("repairs")
 	public List<RepairParts> findAll() {
 		return repairPartsRepo.findAll();
 	}

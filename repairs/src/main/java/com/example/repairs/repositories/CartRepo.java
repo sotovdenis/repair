@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CartRepo extends CreateRepo<Cart>, ReadRepo<Cart>, DeleteRepo<Cart> {
+
 }

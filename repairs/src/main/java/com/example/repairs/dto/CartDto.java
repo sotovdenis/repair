@@ -1,20 +1,20 @@
 package com.example.repairs.dto;
 
 public class CartDto {
-	private String customerId;
+	private String userId;
 	private String repairPartsId;
 
-	public CartDto(String customerId, String repairPartsId) {
-		this.customerId = customerId;
+	public CartDto(String userId, String repairPartsId) {
+		this.userId = userId;
 		this.repairPartsId = repairPartsId;
 	}
 
-	public String getCustomerId() {
-		return customerId;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getRepairPartsId() {

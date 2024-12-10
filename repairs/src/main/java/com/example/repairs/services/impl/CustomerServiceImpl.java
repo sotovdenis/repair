@@ -1,11 +1,8 @@
 package com.example.repairs.services.impl;
 
 import com.example.repairs.config.validator.ValidationUtil;
-import com.example.repairs.dto.CarDto;
 import com.example.repairs.dto.CustomerDto;
 import com.example.repairs.dto.RenameCustomerDto;
-import com.example.repairs.entities.CarsInfo;
-import com.example.repairs.entities.Category;
 import com.example.repairs.entities.Customer;
 import com.example.repairs.repositories.CustomerRepo;
 import com.example.repairs.services.CustomerService;

@@ -2,9 +2,11 @@ package com.example.repairs.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "repairs")
-public class RepairParts extends BaseEntity {
+public class RepairParts extends BaseEntity implements Serializable {
     private String name;
     private String description;
     private double price;

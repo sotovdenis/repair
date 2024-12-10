@@ -1,38 +1,31 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <title>Профиль пользователя</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
-<body>
-<div th:replace="fragments/header"></div>
-
-<div class="profile-container">
-    <div th:if="${message}">
-        <p th:text="${message}" class="error-message"></p>
-    </div>
-
-    <div th:if="${profile}">
-        <h1>Профиль пользователя</h1>
-
-        <div class="profile-picture">
-            <img th:src="@{${profile.picture}}" alt="Фото пользователя">
-        </div>
-
-        <div class="profile-info">
-            <p><strong>Логин:</strong> <span th:text="${profile.login}"></span></p>
-            <p><strong>Телефон:</strong> <span th:text="${profile.phone}"></span></p>
-        </div>
-
-        <div class="edit-profile">
-            <a th:href="@{'/profile/' + ${profile.id} + '/edit'}" class="edit-btn">Редактировать профиль</a>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/header"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Profile</h1>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6" th:object="${user}">
+                        <h2>User</h2>
+                        <h4 th:text="'Full Name: ' + *{fullName}"></h4>
+                        <h4 th:text="'Username: ' + *{username}"></h4>
+                        <h4 th:text="'Age: ' + *{age}"></h4>
+                        <b>User Roles: </b>
+                        <div sec:authentication="principal.authorities"></div>
+                    </div>
+                    <div class="col-md-6"><img src="/pic/employee.png" height="350px"></div>
+                </div>
+            </main>
         </div>
     </div>
-</div>
-
+</main>
 <footer th:replace="fragments/footer"></footer>
 </body>
 </html>

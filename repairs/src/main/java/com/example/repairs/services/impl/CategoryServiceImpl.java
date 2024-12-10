@@ -10,12 +10,16 @@ import com.example.repairs.services.CategoryService;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
+@EnableCaching
 public class CategoryServiceImpl implements CategoryService {
 	private final CategoryRepo categoryRepo;
 	private final ValidationUtil validationUtil;
@@ -31,6 +35,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
+	@CacheEvict(cacheNames = "categories", allEntries = true)
 	public void addCategory(CategoryDto categoryDto) {
 		if (!this.validationUtil.isValid(categoryDto)) {
 			this.validationUtil.violations(categoryDto)
@@ -48,6 +53,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
+	@Cacheable("categories")
 	public List<Category> findAll() {
 		return categoryRepo.findAll();
 	}

@@ -8,11 +8,15 @@ import com.example.repairs.services.CarsInfoService;
 import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@EnableCaching
 public class CarsInfoServiceImpl implements CarsInfoService {
 
     private CarInfoRepo carInfoRepo;
@@ -29,6 +33,7 @@ public class CarsInfoServiceImpl implements CarsInfoService {
 
 
     @Override
+    @CacheEvict(cacheNames = "cars", allEntries = true)
     public void addCarInfo(String brand, String vin) {
         CarDto carDto = new CarDto();
         carDto.setBrandName(brand);
@@ -44,6 +49,7 @@ public class CarsInfoServiceImpl implements CarsInfoService {
     }
 
     @Override
+    @Cacheable("cars")
     public List<CarsInfo> findCarInfoByName(String name) {
         return carInfoRepo.findByName(name);
     }

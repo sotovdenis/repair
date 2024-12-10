@@ -2,29 +2,27 @@ package com.example.repairs.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "cart")
 public class Cart extends BaseEntity {
-	private Customer customerId;
+	private User userId;
 	private RepairParts repairPartsId;
 
 	protected Cart() {
 	}
 
-	public Cart(Customer customerId, RepairParts repairPartsId) {
-		this.customerId = customerId;
+	public Cart(User userId, RepairParts repairPartsId) {
+		this.userId = userId;
 		this.repairPartsId = repairPartsId;
 	}
 
 	@OneToOne
-	public Customer getCustomerId() {
-		return customerId;
+	public User getUserId() {
+		return userId;
 	}
 
-	public void setCustomerId(Customer customerId) {
-		this.customerId = customerId;
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	@OneToOne

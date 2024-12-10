@@ -5,7 +5,6 @@ import com.example.contract.viewmodel.parts.BaseViewModel;
 import com.example.contract.viewmodel.parts.ProfileEditForm;
 import com.example.contract.viewmodel.parts.ProfileViewModel;
 import com.example.repairs.dto.CustomerDto;
-import com.example.repairs.entities.Customer;
 import com.example.repairs.services.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
