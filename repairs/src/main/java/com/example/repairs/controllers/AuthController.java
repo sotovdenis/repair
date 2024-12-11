@@ -1,5 +1,7 @@
 package com.example.repairs.controllers;
 
+import com.example.contract.viewmodel.parts.ProfileEditForm;
+import com.example.repairs.dto.UpdateUserForm;
 import com.example.repairs.dto.UserRegistrationDto;
 import com.example.repairs.entities.User;
 import com.example.repairs.services.impl.AuthService;
@@ -10,10 +12,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
@@ -68,7 +67,7 @@ public class AuthController {
 		redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, username);
 		redirectAttributes.addFlashAttribute("badCredentials", true);
 
-		return "redirect:/main";
+		return "redirect:/";
 	}
 
 	@GetMapping("/profile")
@@ -79,6 +78,7 @@ public class AuthController {
 		UserProfileView userProfileView = new UserProfileView(
 				username,
 				user.getEmail(),
+				user.getPassword(),
 				user.getFullName(),
 				user.getAge()
 		);
@@ -87,4 +87,53 @@ public class AuthController {
 
 		return "customers/profile";
 	}
+
+	@GetMapping("/edit")
+	public String edit(Principal principal, Model model) {
+		String username = principal.getName();
+		User user = authService.getUser(username);
+
+//		if (user == null) {
+//			model.addAttribute("message", "Пользователь не найден");
+//			return "error";
+//		}
+
+		UserProfileView profileEditForm = new UserProfileView(
+				username,
+				user.getEmail(),
+				user.getPassword(),
+				user.getFullName(),
+				user.getAge()
+		);
+
+		model.addAttribute("user", profileEditForm);
+		return "edit";
+	}
+
+//	@PostMapping("/edit")
+//	public String edit(Principal principal, Model model,
+//	                   @Valid @ModelAttribute("user") UpdateUserForm form,
+//	                   BindingResult bindingResult) {
+//
+////		if (bindingResult.hasErrors()) {
+////			model.addAttribute("errors", bindingResult.getAllErrors());
+////			return "error";
+////		}
+//
+//		String username = principal.getName();
+//		User user = authService.getUser(username);
+//		UpdateUserForm toAdd = new UpdateUserForm(form.getUsername(), form.getEmail(), form.getPassword(), form.getAge());
+////
+////		if (user == null) {
+////			model.addAttribute("message", "Пользователь не найден");
+////			return "error";
+////		}
+//
+//		authService.edit(username, toAdd);
+//
+//		model.addAttribute("message", "Профиль обновлен");
+//
+//		return "redirect:/users/edit";
+//	}
+
 }

@@ -8,16 +8,27 @@ public class UserProfileView {
 
 	private String fullName;
 
+	private String password;
+
 	private int age;
 
 	public UserProfileView() {
 	}
 
-	public UserProfileView(String username, String email, String fullName, int age) {
+	public UserProfileView(String username, String email, String password, String fullName, int age) {
 		this.username = username;
+		this.password = password;
 		this.email = email;
 		this.fullName = fullName;
 		this.age = age;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUsername() {

@@ -224,7 +224,7 @@ public class Clr implements CommandLineRunner {
 		System.out.println("Enter order details in format: amount status");
 		String[] params = bufferedReader.readLine().split("\\s+");
 
-		Customer customer = customerService.findAll().getFirst();
+		User customer = userDetailsService.findAll().getFirst();
 		RepairParts repairPart = repairPartsService.findAll().getFirst();
 		double amount = Double.parseDouble(params[0]);
 		String status = params[1];
@@ -243,7 +243,7 @@ public class Clr implements CommandLineRunner {
 		System.out.println("Enter review details in format: rating content");
 		String[] params = bufferedReader.readLine().split("\\s+");
 
-		Customer customer = customerService.findAll().getFirst();
+		User customer = userDetailsService.findAll().getFirst();
 		RepairParts repairPart = repairPartsService.findAll().getFirst();
 
 		//check orders
@@ -289,7 +289,7 @@ public class Clr implements CommandLineRunner {
 	private void showAllOrders() {
 		List<Order> orders = orderRepository.findAll();
 		orders.forEach(order -> System.out.printf("OrderService: %s - %s - $%.2f%n",
-				order.getCustomer().getName(),
+				order.getCustomer().getUsername(),
 				order.getRepairParts().getName(),
 				order.getAmount()));
 	}
@@ -297,7 +297,7 @@ public class Clr implements CommandLineRunner {
 	private void showAllReviews() {
 		List<Review> reviews = reviewRepository.findAll();
 		reviews.forEach(review -> System.out.printf("Review: %s - %s - %d stars%n",
-				review.getCustomer().getName(),
+				review.getCustomer().getUsername(),
 				review.getContent(),
 				review.getRating()));
 	}

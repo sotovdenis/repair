@@ -11,10 +11,10 @@
 <div th:replace="fragments/header"></div>
 <h2>Редактировать профиль</h2>
 
-<form th:action="@{/profile/{id}/edit(id=${form.id})}" th:object="${form}" method="post">
+<form th:action="@{/users/edit}" th:object="${user}" method="post">
     <div>
         <label for="login">Логин:</label>
-        <input type="text" id="login" th:field="*{login}" placeholder="Введите ваш логин" required/>
+        <input type="text" id="login" th:field="*{username}" placeholder="Введите ваш логин" required/>
     </div>
     <div>
         <label for="email">Email:</label>

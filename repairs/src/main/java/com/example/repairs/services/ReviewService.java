@@ -15,4 +15,6 @@ public interface ReviewService {
     Review findById(String id);
 
     void updateReviewById(String id, ReviewDto reviewDto);
+
+    List<ReviewDto> findAllByCategoryName(String categoryName);
 }

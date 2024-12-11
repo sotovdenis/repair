@@ -39,10 +39,9 @@ public class AppSecurityConfiguration {
 										.permitAll()
 										.requestMatchers("/favicon.ico").permitAll()
 										.requestMatchers("/error").permitAll()
-										.requestMatchers("/", "/users/login", "/users/register", "/users/login-error", "cart/user")
+										.requestMatchers("/", "product/p/{categoryName}", "product/products", "/users/login", "/users/edit", "/users/register", "/users/login-error", "cart/user")
 										.permitAll().
-										requestMatchers("/main").authenticated().
-										requestMatchers("/users/profile").authenticated().
+										requestMatchers("/users/profile",  "customers/edit", "/users/logout").authenticated().
 										requestMatchers("/admin",
 												"/admin/categories/create",
 												"/admin/cars/create",
@@ -55,7 +54,7 @@ public class AppSecurityConfiguration {
 										loginPage("/users/login").
 										usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
 										passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-										defaultSuccessUrl("/main").
+										defaultSuccessUrl("/").
 										failureForwardUrl("/users/login-error")
 				)
 				.logout((logout) ->

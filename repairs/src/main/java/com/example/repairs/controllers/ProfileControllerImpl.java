@@ -48,25 +48,30 @@ public class ProfileControllerImpl implements ProfileController {
 	}
 
 	@Override
-	@GetMapping("/{id}/edit")
-	public String editProfile(@PathVariable String id, Model model) {
-		CustomerDto customer = customerService.getCustomerById(id);
-
-		if (customer == null) {
-			model.addAttribute("message", "Пользователь не найден");
-			return "error";
-		}
-
-		ProfileEditForm profileEditForm = new ProfileEditForm(
-				id,
-				customer.getLogin(),
-				customer.getPassword(),
-				customer.getEmail()
-		);
-
-		model.addAttribute("form", profileEditForm);
-		return "customers/edit";
+	public String editProfile(String id, Model model) {
+		return null;
 	}
+
+//	@Override
+//	@GetMapping("/{id}/edit")
+//	public String editProfile(@PathVariable String id, Model model) {
+//		CustomerDto customer = customerService.getCustomerById(id);
+//
+//		if (customer == null) {
+//			model.addAttribute("message", "Пользователь не найден");
+//			return "error";
+//		}
+//
+//		ProfileEditForm profileEditForm = new ProfileEditForm(
+//				id,
+//				customer.getLogin(),
+//				customer.getPassword(),
+//				customer.getEmail()
+//		);
+//
+//		model.addAttribute("form", profileEditForm);
+//		return "customers/edit";
+//	}
 
 
 	@Override

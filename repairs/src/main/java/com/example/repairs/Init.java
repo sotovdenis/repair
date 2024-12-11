@@ -49,7 +49,9 @@ public class Init implements CommandLineRunner {
 		if (userRepository.count() == 0) {
 			initAdmin();
 			initModerator();
+//			for (int i = 0; i < 50; i++) {
 			initNormalUser();
+//			}
 		}
 	}
 

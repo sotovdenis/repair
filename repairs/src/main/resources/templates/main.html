@@ -31,18 +31,18 @@
 </div>
 
 <h2>Топ зап частей</h2>
-<div th:if="${repairParts}">
+<div th:if="${top}">
     <table>
         <thead>
         <tr>
             <th>Наименование</th>
-            <th>Стоимость</th>
+            <th>rjkdj</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="part : ${repairParts}">
+        <tr th:each="part : ${top}">
             <td th:text="${part.name}"></td>
-            <td th:text="${part.price}"></td>
+            <td th:text="${part.sum}"></td>
         </tr>
         </tbody>
     </table>

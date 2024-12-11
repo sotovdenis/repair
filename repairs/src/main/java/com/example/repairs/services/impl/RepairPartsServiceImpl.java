@@ -2,6 +2,7 @@ package com.example.repairs.services.impl;
 
 import com.example.repairs.config.validator.ValidationUtil;
 import com.example.repairs.dto.RepairPartsDto;
+import com.example.repairs.dto.TopDto;
 import com.example.repairs.entities.Category;
 import com.example.repairs.entities.RepairParts;
 import com.example.repairs.repositories.CategoryRepo;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-//@EnableCaching
 public class RepairPartsServiceImpl implements RepairPartsService {
 	private final RepairPartsRepo repairPartsRepo;
 	private final CategoryRepo categoryRepo;
@@ -34,7 +34,6 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	}
 
 	@Override
-//	@CacheEvict(cacheNames = "repairs", allEntries = true)
 	public void addRepairPart(RepairPartsDto repairPartsDto) {
 		if (!this.validationUtil.isValid(repairPartsDto)) {
 			this.validationUtil.violations(repairPartsDto)
@@ -57,9 +56,18 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	}
 
 	@Override
-//	@Cacheable("repairs")
 	public List<RepairParts> findAll() {
 		return repairPartsRepo.findAll();
+	}
+
+	@Override
+	public List<RepairParts> getByCategoryName(String categoryName) {
+		return repairPartsRepo.getByCategoryName(categoryName);
+	}
+
+	@Override
+	public List<TopDto> topFive() {
+		return repairPartsRepo.topFive();
 	}
 
 	@Override

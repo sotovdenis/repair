@@ -22,6 +22,12 @@
                     </div>
                     <div class="col-md-6"><img src="/pic/employee.png" height="350px"></div>
                 </div>
+                <form th:action="@{/users/logout}" method="post">
+                    <button type="submit" class="btn btn-danger mt-3">Logout</button>
+                </form>
+<!--                <form th:action="@{/edit}" method="post">-->
+<!--                    <button type="submit" class="btn btn-secondary mt-3">Edit</button>-->
+<!--                </form>-->
             </main>
         </div>
     </div>

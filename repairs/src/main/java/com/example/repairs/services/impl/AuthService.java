@@ -1,6 +1,7 @@
 package com.example.repairs.services.impl;
 
 
+import com.example.repairs.dto.UpdateUserForm;
 import com.example.repairs.dto.UserRegistrationDto;
 import com.example.repairs.entities.User;
 import com.example.repairs.entities.UserRoles;
@@ -59,6 +60,18 @@ public class AuthService {
 	public User getUser(String username) {
 		return userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException(username + " was not found!"));
+	}
+
+	public void edit(String username, UpdateUserForm updatedUser) {
+		User user = userRepository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException(username + " was not found!"));;
+
+		user.setUsername(updatedUser.getUsername());
+		user.setEmail(updatedUser.getEmail());
+		user.setPassword(updatedUser.getPassword());
+		user.setAge(updatedUser.getAge());
+
+		userRepository.save(user);
 	}
 }
 

@@ -2,11 +2,13 @@ package com.example.repairs.controllers;
 
 import com.example.contract.controllers.MainPageController;
 import com.example.contract.viewmodel.parts.BaseViewModel;
+import com.example.repairs.dto.TopDto;
 import com.example.repairs.entities.Category;
 import com.example.repairs.entities.RepairParts;
 import com.example.repairs.services.CategoryService;
 import com.example.repairs.services.RepairPartsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/main")
+@RequestMapping("/")
 public class MainPageControllerImpl implements MainPageController {
 
     private final RepairPartsService repairPartsService;
@@ -40,9 +42,13 @@ public class MainPageControllerImpl implements MainPageController {
 
         List<RepairParts> repairPartsList = repairPartsService.findAll().stream().limit(5).collect(Collectors.toList());
 
+        List<TopDto> top = repairPartsService.topFive();
+
+        model.addAttribute("top", top);
         model.addAttribute("categories", categoryList);
         model.addAttribute("repairParts", repairPartsList);
 
         return "main";
     }
+
 }

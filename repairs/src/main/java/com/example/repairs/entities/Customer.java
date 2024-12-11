@@ -8,14 +8,12 @@ import jakarta.persistence.*;
 public class Customer extends BaseEntity {
     private String name;
     private String email;
-    private String phone;
     private String login;
     private String password;
 
-    public Customer(String name, String email, String phone, String login, String password) {
+    public Customer(String name, String email, String login, String password) {
         this.name = name;
         this.email = email;
-        this.phone = phone;
         this.login = login;
         this.password = password;
     }
@@ -39,15 +37,6 @@ public class Customer extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Column(name = "phone", nullable = false)
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     @Column(name = "login", nullable = false)

@@ -80,7 +80,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setLogin(customerDto.getLogin());
         customer.setName(customerDto.getName());
         customer.setEmail(customerDto.getEmail());
-        customer.setPhone(customerDto.getPhone());
         customer.setPassword(customerDto.getPassword());
         customerRepo.update(customer);
 
@@ -92,7 +91,6 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setPassword(customer.getPassword());
         customerDto.setEmail(customer.getEmail());
-        customerDto.setPhone(customer.getPhone());
         customerDto.setLogin(customer.getLogin());
         customerDto.setName(customer.getName());
 

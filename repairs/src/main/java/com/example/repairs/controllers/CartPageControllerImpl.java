@@ -38,8 +38,6 @@ public class CartPageControllerImpl {
 		User user = authService.getUser(username);
 
 		List<Cart> carts = cartService.findByUserId(user.getId());
-		System.out.println(carts.size());
-		System.out.println(carts.get(0).getId());
 
 		if (carts.isEmpty()) {
 			model.addAttribute("message", "Ваша корзина пуста.");
