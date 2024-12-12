@@ -12,4 +12,6 @@ import java.util.List;
 @Repository
 public interface ReviewRepo extends CreateRepo<Review>, ReadRepo<Review>, UpdateRepo<Review>, DeleteRepo<Review> {
 	List<Review> getAllByRepairName(String repairName);
+	List<Review> findAllByRepairName(String name);
+
 }

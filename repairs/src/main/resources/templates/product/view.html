@@ -22,9 +22,9 @@
 
 <div class="reviews">
     <h3>Reviews</h3>
-    <div>
-        <p th:text="'Review: ' + ${review.review}">Review Content</p>
-        <p th:text="'Rating: ' + ${review.rating}">Rating</p>
+    <div th:each="re : ${review}" class="list-group-item">
+        <p th:text="'Review: ' + ${re.getReview()}">Review Content</p>
+        <p th:text="'Rating: ' + ${re.getRating()}">Rating</p>
     </div>
 </div>
 <footer th:replace="fragments/footer"></footer>

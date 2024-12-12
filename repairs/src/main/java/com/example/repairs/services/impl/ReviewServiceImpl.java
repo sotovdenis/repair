@@ -77,4 +77,9 @@ public class ReviewServiceImpl implements ReviewService {
 				.stream().
 				map(c -> modelMapper.map(Review.class, ReviewDto.class)).toList();
 	}
+
+	@Override
+	public List<Review> findAllByRepairName(String name) {
+		return reviewRepo.findAllByRepairName(name);
+	}
 }

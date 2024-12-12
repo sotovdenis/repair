@@ -13,4 +13,5 @@ import java.util.List;
 public interface RepairPartsRepo extends CreateRepo<RepairParts>, ReadRepo<RepairParts> {
 	List<RepairParts> getByCategoryName(String categoryName);
 	List<TopDto> topFive();
+	RepairParts findByName(String name);
 }

@@ -136,19 +136,22 @@ public class Clr implements CommandLineRunner {
 
 		User user = userDetailsService.getUserByUsername(params[0]);
 		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
-		System.out.println(username);
+		System.out.println(user.getUsername());
 
 		RepairParts repairParts = repairPartsService.findAll().getFirst();
 		System.out.println(repairParts.getName());
+
+		Cart cart = new Cart(user, repairParts);
 
 
 //		Cart cart = new Cart(userDetailsService.findByUsername(username).get(), repairPartsService.findAll().stream().filter(e -> e.getName().equals(params[1])).toList().getFirst());
 
 //		CartDto cartDto = new CartDto(cart.getUserId().getId(), cart.getRepairPartsId().getId());
 
-		CartDto cartDto = new CartDto("2f421e21-3195-411d-8d05-625304afdeb4", "5b11d657-d282-4770-857f-d7c505b3cc28");
+		CartDto cartDto = new CartDto(user.getId(), repairParts.getId());
 
-		cartService.addCart(cartDto);
+//		cartService.addCart(cartDto);
+		cartService.add(cart);
 
 		System.out.println("Successfully added to cart!");
 
@@ -289,7 +292,7 @@ public class Clr implements CommandLineRunner {
 	private void showAllOrders() {
 		List<Order> orders = orderRepository.findAll();
 		orders.forEach(order -> System.out.printf("OrderService: %s - %s - $%.2f%n",
-				order.getCustomer().getUsername(),
+				order.getUser().getUsername(),
 				order.getRepairParts().getName(),
 				order.getAmount()));
 	}
@@ -297,7 +300,7 @@ public class Clr implements CommandLineRunner {
 	private void showAllReviews() {
 		List<Review> reviews = reviewRepository.findAll();
 		reviews.forEach(review -> System.out.printf("Review: %s - %s - %d stars%n",
-				review.getCustomer().getUsername(),
+				review.getUser().getUsername(),
 				review.getContent(),
 				review.getRating()));
 	}

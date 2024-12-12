@@ -121,7 +121,7 @@ public class AuthController {
 ////		}
 //
 //		String username = principal.getName();
-//		User user = authService.getUser(username);
+//		User user = authService.getUserId(username);
 //		UpdateUserForm toAdd = new UpdateUserForm(form.getUsername(), form.getEmail(), form.getPassword(), form.getAge());
 ////
 ////		if (user == null) {

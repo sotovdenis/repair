@@ -39,9 +39,14 @@ public class AppSecurityConfiguration {
 										.permitAll()
 										.requestMatchers("/favicon.ico").permitAll()
 										.requestMatchers("/error").permitAll()
-										.requestMatchers("/", "product/p/{categoryName}", "product/products", "/users/login", "/users/edit", "/users/register", "/users/login-error", "cart/user")
+										.requestMatchers("/",
+												"cart/add", "/add/{name}", "/product/add/{name}",
+												"/add/{repairPartsId}", "/product/{name}",
+												"product/p/{categoryName}",
+												"product/products", "/users/login",
+												"/users/edit", "/users/register", "/users/login-error", "cart/user")
 										.permitAll().
-										requestMatchers("/users/profile",  "customers/edit", "/users/logout").authenticated().
+										requestMatchers("/users/profile", "customers/edit", "/users/logout").authenticated().
 										requestMatchers("/admin",
 												"/admin/categories/create",
 												"/admin/cars/create",

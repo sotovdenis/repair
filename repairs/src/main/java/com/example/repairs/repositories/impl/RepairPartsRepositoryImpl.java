@@ -43,4 +43,12 @@ public class RepairPartsRepositoryImpl extends BaseCRUDRepo<RepairParts> impleme
 		return query.getResultList();
 	}
 
+	@Override
+	public RepairParts findByName(@Param("name") String name) {
+		String jpql = "SELECT rp FROM RepairParts rp WHERE rp.name = :name";
+		TypedQuery<RepairParts> query = super.getEntityManager().createQuery(jpql, RepairParts.class);
+		query.setParameter("name", name);
+		return query.getSingleResult();
+	}
+
 }

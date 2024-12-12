@@ -11,6 +11,7 @@ public interface CartService {
 	void deleteCartById(String id);
 	Cart findCartById(String id);
 	List<Cart> findAll();
+	void add(Cart cart);
 
 	List<Cart> findByUserId(String currentUserId);
 }

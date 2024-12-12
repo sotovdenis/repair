@@ -7,14 +7,14 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity {
-	private User customer;
+	private User user;
 	private RepairParts repairParts;
 	private double amount;
 	private String status;
 	private Timestamp date;
 
-	public Order(User customer, RepairParts repairParts, double amount, String status, Timestamp date) {
-		this.customer = customer;
+	public Order(User user, RepairParts repairParts, double amount, String status, Timestamp date) {
+		this.user = user;
 		this.repairParts = repairParts;
 		this.amount = amount;
 		this.status = status;
@@ -25,12 +25,12 @@ public class Order extends BaseEntity {
 	}
 
 	@OneToOne
-	public User getCustomer() {
-		return customer;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCustomer(User customer) {
-		this.customer = customer;
+	public void setUser(User customer) {
+		this.user = customer;
 	}
 
 	@OneToOne

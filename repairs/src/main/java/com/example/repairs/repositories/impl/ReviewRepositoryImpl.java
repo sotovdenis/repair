@@ -23,4 +23,13 @@ public class ReviewRepositoryImpl extends BaseCRUDRepo<Review> implements Review
 
 		return query.getResultList();
 	}
+
+	@Override
+	public List<Review> findAllByRepairName(String name) {
+		String jpql = "SELECT r FROM Review r WHERE r.repairParts.name = :name";
+		TypedQuery<Review> query = super.getEntityManager().createQuery(jpql, Review.class);
+		query.setParameter("name", name);
+
+		return query.getResultList();
+	}
 }

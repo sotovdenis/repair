@@ -12,4 +12,5 @@ public interface RepairPartsService {
     RepairParts findById(String id);
     List<RepairParts> getByCategoryName(String categoryName);
     List<TopDto> topFive();
+    RepairParts findByName(String name);
 }

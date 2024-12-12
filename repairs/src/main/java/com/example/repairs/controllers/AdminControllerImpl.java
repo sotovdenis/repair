@@ -83,7 +83,9 @@ public class AdminControllerImpl implements AdminPageController {
 	}
 
 	@PostMapping("/categories/create")
-	public String createCategory(@ModelAttribute("categoryDto") CategoryDto categoryDto, BindingResult result, Model model) {
+	public String createCategory(@ModelAttribute("categoryDto")
+	                                 CategoryDto categoryDto,
+	                             BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("cars", carsInfoService.findAll());
 			return "categories/create";

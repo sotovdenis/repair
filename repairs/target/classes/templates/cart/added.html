@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header">
+    <title>Корзина</title>
+</head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+
+<h1>Товар добавлен!</h1>
+
+<div th:object="${return}">
+    <h3>Информация о пользователе</h3>
+    <p><strong>Товар добавлен в корзину:</strong> <span th:text="${return.name}"></span></p>
+    <p><strong>Цена:</strong> <span th:text="${return.price}"></span></p>
+</div>
+<footer th:replace="fragments/footer"></footer>
+
+</body>
+</html>

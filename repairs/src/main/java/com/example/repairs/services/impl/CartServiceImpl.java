@@ -2,7 +2,6 @@ package com.example.repairs.services.impl;
 
 import com.example.repairs.dto.CartDto;
 import com.example.repairs.entities.Cart;
-import com.example.repairs.entities.User;
 import com.example.repairs.repositories.CartRepo;
 import com.example.repairs.services.CartService;
 import org.modelmapper.ModelMapper;
@@ -34,6 +33,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Cart> findAll() {
 		return cartRepo.findAll();
+	}
+
+	@Override
+	public void add(Cart cart) {
+		cartRepo.save(cart);
 	}
 
 	@Override

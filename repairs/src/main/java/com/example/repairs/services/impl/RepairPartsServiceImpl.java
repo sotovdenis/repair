@@ -71,6 +71,11 @@ public class RepairPartsServiceImpl implements RepairPartsService {
 	}
 
 	@Override
+	public RepairParts findByName(String name) {
+		return repairPartsRepo.findByName(name);
+	}
+
+	@Override
 	public RepairParts findById(String id) {
 		return repairPartsRepo.findById(id);
 	}
