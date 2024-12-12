@@ -1,18 +1,18 @@
 package com.example.repairs.dto;
 
 public class OrderDto {
-    private String customer;
+    private String user;
     private String repairPart;
 
     public OrderDto() {
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getUser() {
+        return user;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getRepairPart() {

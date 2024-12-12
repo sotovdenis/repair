@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header">
+    <title>Заказ</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+
+<h1>Заказ оформлен!</h1>
+
+<tbody>
+<tr th:each="item : ${order}">
+    <td th:text="${item.getRepairParts().name}"></td>
+    <td th:text="${item.getAmount()}"></td>
+</tr>
+</tbody>
+<footer th:replace="fragments/footer"></footer>
 
 </body>
 </html>

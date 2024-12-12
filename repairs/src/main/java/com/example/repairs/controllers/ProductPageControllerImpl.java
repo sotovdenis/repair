@@ -64,23 +64,19 @@ public class ProductPageControllerImpl implements ProductController {
 		RepairParts repairParts = repairPartsService.findByName(name);
 		List<Review> reviews = reviewService.findAllByRepairName(name);
 
-		// Установите детали продукта
 		productViewModel.setDescription(repairParts.getDescription());
 		productViewModel.setName(repairParts.getName());
 		productViewModel.setBrandName(categoryService.findById(repairParts.getCategory().getId()).getBrand());
 		productViewModel.setPicture("url");
 		productViewModel.setPrice(repairParts.getPrice());
 
-		// Создайте новый список для отзывов
 		List<ReviewViewModel> reviewViewModel = new ArrayList<>();
 
-		// Преобразуйте каждый отзыв в ReviewViewModel
 		for (Review review : reviews) {
 			ReviewViewModel reviewView = new ReviewViewModel(review.getContent(), review.getRating());
 			reviewViewModel.add(reviewView);
 		}
 
-		// Добавьте заполненные списки в модель
 		model.addAttribute("review", reviewViewModel);
 		model.addAttribute("product", productViewModel);
 
@@ -99,31 +95,6 @@ public class ProductPageControllerImpl implements ProductController {
 
 	}
 
-//	@PostMapping("/add")
-//	public String addToCart(Principal principal, String repairPartsId, RedirectAttributes redirectAttributes) {
-//		String username = principal.getName();
-//		User user = authService.getUserId(username);
-//
-//		CartDto cartDto = new CartDto(user.getId(), repairPartsId);
-//
-//		RepairParts repairParts = repairPartsService.findById(cartDto.getRepairPartsId());
-//
-//		cartService.addCart(cartDto);
-//
-//		redirectAttributes.addFlashAttribute("message", "Товар добавлен в корзину!");
-//
-//		return "redirect:product/products";
-//	}
-
-
-//	@GetMapping("/add/{name}")
-//	public String add(Model model, @PathVariable String name) {
-//		RepairParts repairParts = repairPartsService.findByName(name);
-//
-//		model.addAttribute("return", repairParts);
-//		return "cart/added";
-//	}
-//
 	@PostMapping("/add/{name}")
 	public String addToCart(@PathVariable String name,
 			Model model,
@@ -131,11 +102,8 @@ public class ProductPageControllerImpl implements ProductController {
 		String username = principal.getName();
 		User user = authService.getUser(username);
 
-//		CartDto cartDto = new CartDto(user.getId(), repairPartsService.findByName(name).getId());
 		Cart cart = new Cart(user, repairPartsService.findByName(name));
 		RepairParts out = repairPartsService.findByName(name);
-
-//		cartDto.setUserId(user.getId());
 
 
 		model.addAttribute("return", out);

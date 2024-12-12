@@ -3,6 +3,7 @@ package com.example.repairs.services.impl;
 import com.example.repairs.config.validator.ValidationUtil;
 import com.example.repairs.dto.OrderDto;
 import com.example.repairs.entities.Order;
+import com.example.repairs.entities.User;
 import com.example.repairs.repositories.CustomerRepo;
 import com.example.repairs.repositories.OrderRepo;
 import com.example.repairs.repositories.RepairPartsRepo;
@@ -43,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
 					.map(ConstraintViolation::getMessage)
 					.forEach(System.out::println);
 		} else {
-			Order order = new Order(userRepository.getUserByUsername(orderDto.getCustomer()),
+			Order order = new Order(userRepository.findById(orderDto.getUser()),
 					repairPartsRepo.findById(orderDto.getRepairPart()),
 					repairPartsRepo.findById(orderDto.getRepairPart()).getPrice(),
 					"payed",
@@ -55,5 +56,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Order> findAll() {
 		return orderRepo.findAll();
+	}
+
+	@Override
+	public List<Order> getAllByUser(String userId) {
+		return orderRepo.getAllByUserId(userId);
 	}
 }
