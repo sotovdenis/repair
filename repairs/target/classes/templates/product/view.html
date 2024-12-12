@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Product View</title>
+    <title>Товары</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +10,29 @@
 <body>
 <div th:replace="fragments/header"></div>
 
-<h1>Product Details</h1>
+<h1>Здесь Вы можете ознакомиться с товаром поближе</h1>
 
 <div class="product-info">
-    <h2 th:text="${product.name}">Product Name</h2>
-    <p th:text="'Brand: ' + ${product.brandName}">Brand</p>
-    <p th:text="'Description: ' + ${product.description}">Description</p>
-    <p th:text="'Price: $' + ${product.price}">Price</p>
+    <h2 th:text="${product.name}">Наименование</h2>
+    <p th:text="'Марка: ' + ${product.brandName}">Фирма</p>
+    <p th:text="'Описание: ' + ${product.description}">Описание</p>
+    <p th:text="'Цена: рубл. ' + ${product.price}">Стоимость</p>
     <img th:src="@{${product.picture}}" alt="Product Image"/>
 </div>
 
 <div class="reviews">
-    <h3>Reviews</h3>
+    <h3>Отзывы</h3>
     <div th:each="re : ${review}" class="list-group-item">
-        <p th:text="'Review: ' + ${re.getReview()}">Review Content</p>
-        <p th:text="'Rating: ' + ${re.getRating()}">Rating</p>
+        <p th:text="'Review: ' + ${re.getReview()}">Отзыв</p>
+        <p th:text="'Rating: ' + ${re.getRating()}">Оценка</p>
     </div>
 </div>
+<form action="#" th:action="@{/product/add/{name}(name = ${product.name})}" th:object="${cart}"
+      method="post">
+    <div>
+        <button type="submit" class="btn btn-success">Добавить в корзину!</button>
+    </div>
+</form>
 <footer th:replace="fragments/footer"></footer>
 
 </body>

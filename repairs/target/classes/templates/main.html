@@ -11,49 +11,67 @@
 <div th:replace="fragments/header"></div>
 <h1>Главная Страница</h1>
 
-<h2>Разделы Категорий</h2>
-<div th:if="${categories}">
-    <table>
-        <thead>
-        <tr>
-            <th>Имя</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="category : ${categories}">
-            <td th:text="${category.name}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div th:if="${categories.isEmpty()}">
-    <p>мимо вопрос</p>
-</div>
+<!--<h2>Разделы Категорий</h2>-->
+<!--<div th:if="${categories}">-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Имя</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="category : ${categories}">-->
+<!--            <td th:text="${category.name}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--<div th:if="${categories.isEmpty()}">-->
+<!--    <p>мимо вопрос</p>-->
+<!--</div>-->
 
 <h2>Топ зап частей</h2>
-<div th:if="${top}">
-    <table>
-        <thead>
-        <tr>
-            <th>Наименование</th>
-            <th>rjkdj</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="part : ${top}">
-            <td th:text="${part.name}"></td>
-            <td th:text="${part.sum}"></td>
-        </tr>
-        </tbody>
-    </table>
+<!--<div th:if="${top}">-->
+<!--    <table>-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Наименование</th>-->
+<!--            <th>Продано на:</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="part : ${top}">-->
+<!--            <td th:text="${part.name}"></td>-->
+<!--            <td th:text="${part.sum}"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+            <h2 class="text-center text-dark mt-5">Лучшие в этом месяце</h2>
+            <div th:each="part : ${top}" class="d-flex flex-column bg-text mb-3">
+                <h2 th:text="'Наименование: ' + ${part.name}">
+                    <!--                        <a class="btn-block" th:href="@{/product/{name}(name=${product.name})}">Побробнее</a>-->
+                </h2>
+                <h4 th:text="'Продано на: ' + ${part.sum}"></h4>
+                <h4><a class="btn-block" th:href="@{/product/{name}(name=${part.name})}">Подробнее</a></h4>
+            </div>
+        </div>
+    </div>
 </div>
 <div th:if="${repairParts.isEmpty()}">
     <p>мимо</p>
-</div>r1
-
+</div>
 <div>
-    <a th:href="@{/admin/repair}">See all repairs(admin)</a>
-    <a th:href="@{/admin/categories}">See all categories(admin)</a>
+    <button type="submit" class="btn btn-secondary mt-3">
+        <a th:href="@{/admin/repair}">Repairs</a>
+    </button>
+    <button type="submit" class="btn btn-secondary mt-3">
+        <a th:href="@{/admin/categories}">Categories</a>
+    </button>
 </div>
 <footer th:replace="fragments/footer"></footer>
 

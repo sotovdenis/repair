@@ -11,10 +11,7 @@ import com.example.repairs.entities.Cart;
 import com.example.repairs.entities.RepairParts;
 import com.example.repairs.entities.Review;
 import com.example.repairs.entities.User;
-import com.example.repairs.services.CartService;
-import com.example.repairs.services.CategoryService;
-import com.example.repairs.services.RepairPartsService;
-import com.example.repairs.services.ReviewService;
+import com.example.repairs.services.*;
 import com.example.repairs.services.impl.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,11 +29,11 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductPageControllerImpl implements ProductController {
 
-	private RepairPartsService repairPartsService;
-	private CartService cartService;
-	private CategoryService categoryService;
-	private ReviewService reviewService;
-	private AuthService authService;
+	private final RepairPartsService repairPartsService;
+	private final CartService cartService;
+	private final CategoryService categoryService;
+	private final ReviewService reviewService;
+	private final AuthService authService;
 
 	@Autowired
 	public ProductPageControllerImpl(RepairPartsService repairPartsService, CartService cartService,
@@ -46,6 +43,7 @@ public class ProductPageControllerImpl implements ProductController {
 		this.categoryService = categoryService;
 		this.reviewService = reviewService;
 		this.authService = authService;
+
 	}
 
 	@Override
@@ -97,8 +95,8 @@ public class ProductPageControllerImpl implements ProductController {
 
 	@PostMapping("/add/{name}")
 	public String addToCart(@PathVariable String name,
-			Model model,
-			Principal principal) {
+	                        Model model,
+	                        Principal principal) {
 		String username = principal.getName();
 		User user = authService.getUser(username);
 
@@ -110,5 +108,7 @@ public class ProductPageControllerImpl implements ProductController {
 		cartService.add(cart);
 		return "cart/added";
 	}
+
+
 }
 

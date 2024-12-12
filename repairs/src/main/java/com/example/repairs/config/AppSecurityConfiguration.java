@@ -46,7 +46,7 @@ public class AppSecurityConfiguration {
 												"product/products", "/users/login",
 												"/users/edit", "/users/register", "/users/login-error", "cart/user")
 										.permitAll().
-										requestMatchers("/users/profile", "customers/edit", "/users/logout").authenticated().
+										requestMatchers("/users/profile", "/order/user", "customers/edit", "/users/logout").authenticated().
 										requestMatchers("/admin",
 												"/admin/categories/create",
 												"/admin/cars/create",
