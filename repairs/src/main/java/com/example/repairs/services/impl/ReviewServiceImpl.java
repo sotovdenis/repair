@@ -40,6 +40,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public void addReviewM(Review review) {
+		reviewRepo.save(review);
+	}
+
+	@Override
 	public void deleteReview(String id) {
 		reviewRepo.delete(reviewRepo.findById(id));
 	}

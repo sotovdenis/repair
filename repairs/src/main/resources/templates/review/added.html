@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header">
+  <title>Корзина</title>
+</head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+
+<h1>Товар добавлен!</h1>
+
+<div>
+<!--        th:object="${review}"-->
+
+  <h3>Спасибо!</h3>
+<!--  <p><strong>Отзыв:</strong> <span th:text="${review.content}"></span></p>-->
+<!--  <p><strong>Рейтинг:</strong> <span th:text="${review.rating}"></span></p>-->
+</div>
+<footer th:replace="fragments/footer"></footer>
+
+</body>
+</html>

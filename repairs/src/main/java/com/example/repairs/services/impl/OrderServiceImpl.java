@@ -62,4 +62,10 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> getAllByUser(String userId) {
 		return orderRepo.getAllByUserId(userId);
 	}
+
+	@Override
+	public Order findById(String id) {
+		return orderRepo.findById(id);
+	}
+
 }

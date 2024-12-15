@@ -51,4 +51,5 @@ public class RepairPartsRepositoryImpl extends BaseCRUDRepo<RepairParts> impleme
 		return query.getSingleResult();
 	}
 
+
 }

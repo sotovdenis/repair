@@ -1,33 +1,40 @@
 package com.example.repairs.dto;
 
 import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
 
 public class ReviewDto {
     private int rating;
     private String content;
-    private String customer;
-    private String repairPart;
+    private String userId;
+    private String repairPartsId;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
 
 
     public ReviewDto() {
     }
 
-    @NotNull
-    @NotEmpty
+//    @NotNull
+//    @NotEmpty
     public int getRating() {
         return rating;
     }
 
-    public void setRating(@Max(5) int rating) {
+    public void setRating(@Max(6) int rating) {
         this.rating = rating;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 5, message = "Расскажите подробнее про этот товар")
+//    @NotNull
+//    @NotEmpty
+//    @Length(min = 5, message = "Расскажите подробнее про этот товар")
     public String getContent() {
         return content;
     }
@@ -36,25 +43,23 @@ public class ReviewDto {
         this.content = content;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
-    public String getCustomer() {
-        return customer;
+//    @NotNull
+//    @NotEmpty
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    @NotNull
-    @NotEmpty
-    @Length(min = 2, message = "Имя должно содеражать более 2 символов")
-    public String getRepairPart() {
-        return repairPart;
+//    @NotNull
+//    @NotEmpty
+    public String getRepairPartsId() {
+        return repairPartsId;
     }
 
-    public void setRepairPart(String repairPart) {
-        this.repairPart = repairPart;
+    public void setRepairPartsId(String repairPartsId) {
+        this.repairPartsId = repairPartsId;
     }
 }

@@ -15,7 +15,6 @@ public interface ProductController extends BaseController {
     String viewRepairDetail(
             @PathVariable String name,
             Model model,
-//            List<ReviewViewModel> reviewViewModel,
             ProductViewModel productViewModel
     ) throws Exception;
 

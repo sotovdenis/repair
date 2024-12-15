@@ -83,6 +83,12 @@ public class CartPageControllerImpl {
 
 		model.addAttribute("order", orderService.getAllByUser(user.getId()));
 
+		List<String> cartIds = carts.stream().
+				filter(cart -> cart.getUserId().getId().equals(user.getId()))
+				.map(Cart::getId).toList();
+		cartIds.forEach(cartService::deleteCartById);
+
+
 		return "order/create";
 	}
 }

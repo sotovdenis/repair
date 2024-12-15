@@ -9,4 +9,5 @@ public interface OrderService {
     void addOrder(OrderDto orderDto);
     List<Order> findAll();
     List<Order> getAllByUser(String userId);
+    Order findById(String id);
 }

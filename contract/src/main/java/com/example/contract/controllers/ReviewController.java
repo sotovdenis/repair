@@ -1,19 +1,13 @@
 package com.example.contract.controllers;
 
+import com.example.contract.input.ReviewInputModel;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RequestMapping("/reviews")
+import java.security.Principal;
+
 public interface ReviewController {
 
-    @GetMapping("/list")
-    String listReviews(Model model);
-
-    @GetMapping("/{id}")
-    String viewReview(
-            @PathVariable("id") String id,
-            Model model
-    );
+    String createReview(@PathVariable String id, Principal principal, Model model, ReviewInputModel review);
 }

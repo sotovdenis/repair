@@ -25,7 +25,8 @@ public class Review extends BaseEntity {
 	}
 
 	@PrimaryKeyJoinColumn
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id" , nullable = false)
 	public User getUser() {
 		return user;
 	}
@@ -34,7 +35,8 @@ public class Review extends BaseEntity {
 		this.user = customer;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "repair_parts_id" , nullable = false)
 	public RepairParts getRepairParts() {
 		return repairParts;
 	}
