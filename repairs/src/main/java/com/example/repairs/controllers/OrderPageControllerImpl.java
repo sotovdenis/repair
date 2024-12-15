@@ -41,14 +41,21 @@ public class OrderPageControllerImpl {
         User user = authService.getUser(username);
 
         var carts = cartService.findByUserId(user.getId());
-        List<RepairParts> repairPartsList = carts.stream().map(Cart::getRepairPartsId).toList();
 
         double totalPrice = 0d;
-        for (RepairParts r : repairPartsList) {
-            totalPrice += r.getPrice();
-        }
+
 
         var orders = orderService.getAllByUser(user.getId());
+
+        List<RepairParts> repairPartsList = carts.stream().map(Cart::getRepairPartsId).toList();
+
+        List<Order> ordersList = orderService.findAll()
+                .stream()
+                .filter(order -> order.getUser().getId().equals(user.getId())).toList();
+
+        for (Order o : ordersList) {
+            totalPrice += o.getAmount();
+        }
 
         model.addAttribute("user", user);
         model.addAttribute("total", totalPrice);
@@ -75,12 +82,12 @@ public class OrderPageControllerImpl {
 //									  Model model
     ) {
 //		String username = principal.getName();
-//		User user = authService.getUser(username);
+//		User user = authService.getUsers(username);
 //
 //		RepairParts repairParts = repairPartsService.findById(id);
 //
 //		Review review = reviewService.findAll().stream()
-//				.filter(r -> r.getUser().getId().equals(user.getId()))
+//				.filter(r -> r.getUsers().getId().equals(user.getId()))
 //				.filter(rep -> rep.getRepairParts().equals(repairParts)).toList().getFirst();
 
 //		model.addAttribute("orderItem", repairParts);
@@ -99,10 +106,12 @@ public class OrderPageControllerImpl {
         User user = authService.getUser(username);
 
         ReviewDto reviewDto = new ReviewDto();
+        Order orderItem = orderService.findById(id);
+
 
         Review reviewModel = new Review(
                 user,
-                repairPartsService.findById(id),
+                repairPartsService.findById(orderItem.getRepairParts().getId()),
                 review.getRating(),
                 review.getContent(),
                 new Timestamp(System.currentTimeMillis())
@@ -110,10 +119,10 @@ public class OrderPageControllerImpl {
 
         reviewDto.setContent(review.getContent());
         reviewDto.setRating(review.getRating());
-        reviewDto.setUserId(user.getId());
+        reviewDto.setUsersId(user.getId());
         System.out.printf("!!!!!!!!!!!!!!!!!!");
-        System.out.println(reviewDto.getUserId());
-        reviewDto.setRepairPartsId(id);
+        System.out.println(reviewDto.getUsersId());
+        reviewDto.setRepairPartsId(repairPartsService.findById(orderItem.getRepairParts().getId()).getId());
         System.out.println(reviewDto.getRepairPartsId());
         reviewDto.setDate(String.valueOf(new Timestamp(System.currentTimeMillis())));
 
@@ -121,7 +130,7 @@ public class OrderPageControllerImpl {
 
         model.addAttribute("review", reviewModel);
 
-        return "redirect:/review/added";
+        return "redirect:/order/review/added";
     }
 
 }

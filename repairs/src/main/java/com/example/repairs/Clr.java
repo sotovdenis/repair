@@ -300,7 +300,7 @@ public class Clr implements CommandLineRunner {
 	private void showAllReviews() {
 		List<Review> reviews = reviewRepository.findAll();
 		reviews.forEach(review -> System.out.printf("Review: %s - %s - %d stars%n",
-				review.getUser().getUsername(),
+				review.getUsers().getUsername(),
 				review.getContent(),
 				review.getRating()));
 	}

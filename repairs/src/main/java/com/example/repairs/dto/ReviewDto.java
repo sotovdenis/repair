@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Max;
 public class ReviewDto {
     private int rating;
     private String content;
-    private String userId;
+    private String usersId;
     private String repairPartsId;
 
     public String getDate() {
@@ -45,12 +45,12 @@ public class ReviewDto {
 
 //    @NotNull
 //    @NotEmpty
-    public String getUserId() {
-        return userId;
+    public String getUsersId() {
+        return usersId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsersId(String usersId) {
+        this.usersId = usersId;
     }
 
 //    @NotNull

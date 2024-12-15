@@ -7,14 +7,14 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "review")
 public class Review extends BaseEntity {
-	private User user;
+	private User users;
 	private RepairParts repairParts;
 	private int rating;
 	private String content;
 	private Timestamp date;
 
-	public Review(User user, RepairParts repairParts, int rating, String content, Timestamp date) {
-		this.user = user;
+	public Review(User users, RepairParts repairParts, int rating, String content, Timestamp date) {
+		this.users = users;
 		this.repairParts = repairParts;
 		this.rating = rating;
 		this.content = content;
@@ -27,12 +27,12 @@ public class Review extends BaseEntity {
 	@PrimaryKeyJoinColumn
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id" , nullable = false)
-	public User getUser() {
-		return user;
+	public User getUsers() {
+		return users;
 	}
 
-	public void setUser(User customer) {
-		this.user = customer;
+	public void setUsers(User customer) {
+		this.users = customer;
 	}
 
 	@OneToOne(fetch = FetchType.EAGER)

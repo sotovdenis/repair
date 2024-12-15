@@ -40,7 +40,7 @@
 //    @PostMapping("/create")
 //    public String createReview(String id, Principal principal, Model model, ReviewInputModel review) {
 //        String username = principal.getName();
-//        User user = authService.getUser(username);
+//        User user = authService.getUsers(username);
 //
 //        ReviewDto reviewDto = new ReviewDto();
 //
