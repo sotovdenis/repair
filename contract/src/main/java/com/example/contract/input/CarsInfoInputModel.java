@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CarsInfoInputModel {
     private String brandName;
-    private String VIN;
+    private String vin;
 
     @NotBlank(message = "Марка автомобиля обязательна")
     public String getBrandName() {
@@ -16,12 +16,12 @@ public class CarsInfoInputModel {
     }
 
     @NotBlank(message = "VIN код обязателен")
-    public String getVIN() {
-        return VIN;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 }
 

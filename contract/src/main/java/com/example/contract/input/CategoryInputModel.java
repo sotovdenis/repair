@@ -3,17 +3,17 @@ package com.example.contract.input;
 import jakarta.validation.constraints.NotBlank;
 
 public class CategoryInputModel {
-    private String carId;
+    private String car;
     private String name;
     private String brand;
 
     @NotBlank(message = "ID автомобиля обязателен")
-    public String getCarId() {
-        return carId;
+    public String getCar() {
+        return car;
     }
 
-    public void setCarId(String carId) {
-        this.carId = carId;
+    public void setCar(String car) {
+        this.car = car;
     }
 
     @NotBlank(message = "Название категории обязательно")

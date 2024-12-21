@@ -1,29 +1,39 @@
 package com.example.contract.controllers;
 
+import com.example.contract.input.CarsInfoInputModel;
+import com.example.contract.input.CategoryInputModel;
+import com.example.contract.input.RepairPartsInputModel;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 public interface AdminPageController extends BaseController {
 
-	@GetMapping
-	String admin();
 
-	@GetMapping("/cars")
-	String viewAllCars(Model model);
+    String admin();
 
-	@GetMapping("/cars/create")
-	String createCarForm(Model model);
+    String viewAllCars(Model model);
 
-	@GetMapping("/categories")
-	String viewAllCategories(Model model);
+    String createCarForm(Model model);
 
-	@GetMapping("/categories/create")
-	String createCategoryForm(Model model);
+    String createCar(@ModelAttribute("carDto") CarsInfoInputModel carDto,
+                     BindingResult result, Model model);
 
-	@GetMapping("/repair")
-	String viewAllRepairParts(Model model);
+    String viewAllCategories(Model model);
 
-	@GetMapping("/repair/create")
-	String createRepairPartForm(Model model);
+    String createCategoryForm(Model model);
+
+    String createCategory(@ModelAttribute("categoryDto") CategoryInputModel categoryDto,
+                          BindingResult result, Model model);
+
+    String viewAllRepairParts(Model model);
+
+    String createRepairPartForm(Model model);
+
+    String createRepairPart(@ModelAttribute("repairPartsDto") RepairPartsInputModel repairPartsDto,
+                            BindingResult result, Model model);
 
 }

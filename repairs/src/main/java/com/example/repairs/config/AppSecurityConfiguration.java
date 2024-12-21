@@ -23,75 +23,75 @@ import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class AppSecurityConfiguration {
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
-	public AppSecurityConfiguration(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    public AppSecurityConfiguration(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
-		http
-				.authorizeHttpRequests(
-						authorizeHttpRequests ->
-								authorizeHttpRequests.
-										requestMatchers(PathRequest.toStaticResources().atCommonLocations())
-										.permitAll()
-										.requestMatchers("/favicon.ico").permitAll()
-										.requestMatchers("/error").permitAll()
-										.requestMatchers("/",
-												"cart/add", "/add/{name}", "/product/add/{name}",
-												"/add/{repairPartsId}", "/product/{name}",
-												"product/p/{categoryName}",
-												"product/products", "/users/login",
-												"/users/edit", "/users/register", "/users/login-error", "cart/user")
-										.permitAll().
-										requestMatchers("/users/profile", "order/{id}/review", "order/review/added",
-												"order/{id}/review/added",
-												"/order/user", "customers/edit", "/users/logout").authenticated().
-										requestMatchers("/admin",
-												"/admin/categories/create",
-												"/admin/cars/create",
-												"/admin/repair/create").hasAnyRole(UserRoles.MODERATOR.name(), UserRoles.ADMIN.name()).
-										anyRequest().authenticated()
-				)
-				.formLogin(
-						(formLogin) ->
-								formLogin.
-										loginPage("/users/login").
-										usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
-										passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
-										defaultSuccessUrl("/").
-										failureForwardUrl("/users/login-error")
-				)
-				.logout((logout) ->
-						logout.logoutUrl("/users/logout").
-								logoutSuccessUrl("/").
-								invalidateHttpSession(true)
-				).securityContext(
-						securityContext -> securityContext.
-								securityContextRepository(securityContextRepository)
-				);
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, SecurityContextRepository securityContextRepository) throws Exception {
+        http
+                .authorizeHttpRequests(
+                        authorizeHttpRequests ->
+                                authorizeHttpRequests.
+                                        requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+                                        .permitAll()
+                                        .requestMatchers("/favicon.ico").permitAll()
+                                        .requestMatchers("/error").permitAll()
+                                        .requestMatchers("/",
+                                                "/users/login",
+                                                "/users/register", "/users/login-error")
+                                        .permitAll().
+                                        requestMatchers("/users/profile", "/product/{name}",
+                                                "product/p/{categoryName}",
+                                                "product/products", "cart/add", "/add/{name}", "/product/add/{name}",
+                                                "/add/{repairPartsId}", "order/{id}/review", "order/review/added",
+                                                "order/{id}/review/added", "/users/edit",
+                                                "/order/user", "customers/edit", "/users/logout", "cart/user").authenticated().
+                                        requestMatchers("/admin",
+                                                "/admin/categories/create",
+                                                "/admin/cars/create",
+                                                "/admin/repair/create").hasAnyRole(UserRoles.MODERATOR.name(), UserRoles.ADMIN.name()).
+                                        anyRequest().authenticated()
+                )
+                .formLogin(
+                        (formLogin) ->
+                                formLogin.
+                                        loginPage("/users/login").
+                                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                                        passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
+                                        defaultSuccessUrl("/").
+                                        failureForwardUrl("/users/login-error")
+                )
+                .logout((logout) ->
+                        logout.logoutUrl("/users/logout").
+                                logoutSuccessUrl("/").
+                                invalidateHttpSession(true)
+                ).securityContext(
+                        securityContext -> securityContext.
+                                securityContextRepository(securityContextRepository)
+                );
 
-		return http.build();
-	}
+        return http.build();
+    }
 
-	@Bean
-	public SecurityContextRepository securityContextRepository() {
-		return new DelegatingSecurityContextRepository(
-				new RequestAttributeSecurityContextRepository(),
-				new HttpSessionSecurityContextRepository()
-		);
-	}
+    @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new AppUserDetailsServiceImpl(userRepository);
-	}
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new AppUserDetailsServiceImpl(userRepository);
+    }
 }
 

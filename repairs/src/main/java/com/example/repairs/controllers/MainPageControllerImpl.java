@@ -38,6 +38,7 @@ public class MainPageControllerImpl implements MainPageController {
     @Override
     @GetMapping
     public String listMainPage(Model model) {
+
         List<Category> categoryList = categoryService.findAll().stream().limit(5).collect(Collectors.toList());
 
         List<RepairParts> repairPartsList = repairPartsService.findAll().stream().limit(5).collect(Collectors.toList());

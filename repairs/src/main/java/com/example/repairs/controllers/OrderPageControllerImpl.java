@@ -76,23 +76,7 @@ public class OrderPageControllerImpl {
     }
 
     @GetMapping("/review/added")
-    public String showReviewAddedForm(
-//			@PathVariable String id,
-//									  Principal principal,
-//									  Model model
-    ) {
-//		String username = principal.getName();
-//		User user = authService.getUsers(username);
-//
-//		RepairParts repairParts = repairPartsService.findById(id);
-//
-//		Review review = reviewService.findAll().stream()
-//				.filter(r -> r.getUsers().getId().equals(user.getId()))
-//				.filter(rep -> rep.getRepairParts().equals(repairParts)).toList().getFirst();
-
-//		model.addAttribute("orderItem", repairParts);
-//		model.addAttribute("review", review);
-
+    public String showReviewAddedForm() {
         return "review/added";
     }
 
@@ -120,10 +104,7 @@ public class OrderPageControllerImpl {
         reviewDto.setContent(review.getContent());
         reviewDto.setRating(review.getRating());
         reviewDto.setUsersId(user.getId());
-        System.out.printf("!!!!!!!!!!!!!!!!!!");
-        System.out.println(reviewDto.getUsersId());
         reviewDto.setRepairPartsId(repairPartsService.findById(orderItem.getRepairParts().getId()).getId());
-        System.out.println(reviewDto.getRepairPartsId());
         reviewDto.setDate(String.valueOf(new Timestamp(System.currentTimeMillis())));
 
         reviewService.addReviewM(reviewModel);

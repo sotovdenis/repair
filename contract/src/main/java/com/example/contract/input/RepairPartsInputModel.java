@@ -6,7 +6,7 @@ public class RepairPartsInputModel {
     private String name;
     private String description;
     private double price;
-    private String categoryId;
+    private String category;
 
     @NotBlank(message = "Название запчасти обязательно")
     public String getName() {
@@ -35,12 +35,12 @@ public class RepairPartsInputModel {
     }
 
     @NotBlank(message = "ID категории обязателен")
-    public String getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String categoryId) {
+        this.category = categoryId;
     }
 }
 
