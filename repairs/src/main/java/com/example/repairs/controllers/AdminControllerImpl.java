@@ -7,15 +7,22 @@ import com.example.contract.input.RepairPartsInputModel;
 import com.example.contract.viewmodel.parts.BaseViewModel;
 import com.example.repairs.dto.*;
 import com.example.repairs.services.*;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @Controller
 @RequestMapping("/admin")
 public class AdminControllerImpl implements AdminPageController {
+
+    private static final Logger LOG = LogManager.getLogger(Controller.class);
 
     private final CarsInfoService carsInfoService;
 
@@ -45,6 +52,7 @@ public class AdminControllerImpl implements AdminPageController {
     @Override
     @GetMapping("/cars")
     public String viewAllCars(Model model) {
+        LOG.log(Level.INFO, "viewedAllCars");
         model.addAttribute("cars", carsInfoService.findAll());
         return "cars/table";
     }
@@ -58,10 +66,12 @@ public class AdminControllerImpl implements AdminPageController {
 
     @Override
     @PostMapping("/cars/create")
-    public String createCar(@ModelAttribute("carDto") CarsInfoInputModel carDto, BindingResult result, Model model) {
+    public String createCar(@ModelAttribute("carDto") CarsInfoInputModel carDto,
+                            BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "redirect:/admin/cars/create";
         }
+        LOG.log(Level.INFO, "car created {}", carDto.toString());
         carsInfoService.addCarInfo(carDto.getBrandName(), carDto.getVin());
         return "redirect:/admin/cars";
     }
@@ -69,6 +79,7 @@ public class AdminControllerImpl implements AdminPageController {
     @Override
     @GetMapping("/categories")
     public String viewAllCategories(Model model) {
+        LOG.log(Level.INFO, "all categories viewed");
         model.addAttribute("categories", categoryService.findAll());
         return "categories/table";
     }
@@ -91,6 +102,8 @@ public class AdminControllerImpl implements AdminPageController {
             return "categories/create";
         }
 
+        LOG.log(Level.INFO, "category created {}", categoryDto.getName());
+
         CategoryDto categoryDtoToAdd = new CategoryDto();
         categoryDtoToAdd.setName(categoryDto.getName());
         categoryDtoToAdd.setCar(categoryDto.getCar());
@@ -104,6 +117,7 @@ public class AdminControllerImpl implements AdminPageController {
     @GetMapping("/repair")
     public String viewAllRepairParts(Model model) {
         model.addAttribute("repair", repairPartsService.findAll());
+        LOG.log(Level.INFO, "viewedAllRepairs");
         return "repair/table";
     }
 
@@ -122,6 +136,8 @@ public class AdminControllerImpl implements AdminPageController {
             model.addAttribute("categories", categoryService.findAll());
             return "repair/create";
         }
+
+        LOG.log(Level.INFO, "new repair part created {}", repairPartsDto.getName());
 
         RepairPartsDto repairPartsDtoToAdd = new RepairPartsDto();
         repairPartsDtoToAdd.setName(repairPartsDto.getName());
